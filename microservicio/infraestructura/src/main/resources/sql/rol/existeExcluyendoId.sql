@@ -1,0 +1,1 @@
+select count(1) from rol where id <> :id and nombre_rol = :nombre_rol
