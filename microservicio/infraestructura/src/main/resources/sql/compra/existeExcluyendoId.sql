@@ -1,1 +1,0 @@
-select count(1) from compra where id <> :id and fechaCompra = :fechaCompra and idCliente = :idCliente

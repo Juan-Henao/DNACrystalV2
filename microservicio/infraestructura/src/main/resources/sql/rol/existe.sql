@@ -1,1 +1,0 @@
-select count(1) from rol where nombre_rol = :nombre_rol

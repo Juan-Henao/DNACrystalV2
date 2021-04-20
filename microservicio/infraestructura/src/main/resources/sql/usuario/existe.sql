@@ -1,1 +1,1 @@
-select count(1) from usuario where username = :username
+select count(1) from usuario where nombre = :nombre

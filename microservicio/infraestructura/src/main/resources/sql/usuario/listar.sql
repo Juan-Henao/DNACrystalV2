@@ -1,2 +1,2 @@
-select id,idRol,password,username
+select id,nombre,clave,fecha_creacion
 from usuario
