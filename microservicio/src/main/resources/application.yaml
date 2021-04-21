@@ -6,16 +6,15 @@ jasypt:
 server:
    port: 8083
    servlet:
-      context-path: /DNACrystalV2
+      context-path: /DNACrystal
       session:
          timeout: 21600s
 
 spring:
    datasource:
-      driver-class-name: 
       type: com.zaxxer.hikari.HikariDataSource
-      jdbcUrl: jdbc:mysql://localhost:3306/DNACrystalV2?serverTimezone=UTC&useSSL=false
+      jdbcUrl: jdbc:mysql://localhost:3306/DNACrystal?serverTimezone=UTC&useSSL=false
       username: root
-      password: 
+      password: 12345
       hikari:
          poolName: pool
