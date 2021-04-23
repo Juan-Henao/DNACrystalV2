@@ -63,6 +63,12 @@ public class ValidadorArgumento {
         }
     }
 
+    public static void validarMayorDouble(Double numeroInicial, Double numeroFinal, String mensaje) {
+        if (numeroFinal < numeroInicial) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+    
     public static void validarRegex(String correoElectronico, String regex, String mensaje) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(correoElectronico);
