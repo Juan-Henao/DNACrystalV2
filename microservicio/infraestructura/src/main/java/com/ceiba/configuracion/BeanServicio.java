@@ -1,9 +1,10 @@
 package com.ceiba.configuracion;
 
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
-import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
-import com.ceiba.usuario.servicio.ServicioCrearUsuario;
-import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
+import com.ceiba.puerto.repositorio.RepositorioUsuario;
+import com.ceiba.servicio.usuario.ServicioActualizarUsuario;
+import com.ceiba.servicio.usuario.ServicioCrearUsuario;
+import com.ceiba.servicio.usuario.ServicioEliminarUsuario;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

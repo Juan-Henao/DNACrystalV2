@@ -4,11 +4,10 @@ import java.util.List;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.usuario.puerto.dao.DaoUsuario;
+import com.ceiba.modelo.dto.DtoUsuario;
+import com.ceiba.puerto.dao.DaoUsuario;
 
 import org.springframework.stereotype.Component;
-
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
 
 @Component
 public class DaoUsuarioMysql implements DaoUsuario {

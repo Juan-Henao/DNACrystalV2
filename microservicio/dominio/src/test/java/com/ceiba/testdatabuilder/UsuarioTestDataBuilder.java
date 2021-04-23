@@ -1,8 +1,8 @@
-package com.ceiba.usuario.servicio.testdatabuilder;
-
-import com.ceiba.usuario.modelo.entidad.Usuario;
+package com.ceiba.testdatabuilder;
 
 import java.time.LocalDateTime;
+
+import com.ceiba.modelo.entidad.Usuario;
 
 public class UsuarioTestDataBuilder {
 

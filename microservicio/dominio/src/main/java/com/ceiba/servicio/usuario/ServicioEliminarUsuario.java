@@ -1,6 +1,6 @@
-package com.ceiba.usuario.servicio;
+package com.ceiba.servicio.usuario;
 
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
+import com.ceiba.puerto.repositorio.RepositorioUsuario;
 
 public class ServicioEliminarUsuario {
 

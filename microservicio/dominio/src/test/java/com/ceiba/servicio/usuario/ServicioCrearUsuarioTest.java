@@ -1,10 +1,12 @@
-package com.ceiba.usuario.servicio;
+package com.ceiba.servicio.usuario;
 
-import com.ceiba.usuario.modelo.entidad.Usuario;
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
-import com.ceiba.usuario.servicio.testdatabuilder.UsuarioTestDataBuilder;
+import com.ceiba.modelo.entidad.Usuario;
+import com.ceiba.puerto.repositorio.RepositorioUsuario;
+import com.ceiba.servicio.usuario.ServicioCrearUsuario;
+import com.ceiba.testdatabuilder.UsuarioTestDataBuilder;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 

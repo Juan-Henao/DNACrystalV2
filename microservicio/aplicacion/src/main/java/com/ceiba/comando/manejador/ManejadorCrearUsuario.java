@@ -1,13 +1,13 @@
-package com.ceiba.usuario.comando.manejador;
+package com.ceiba.comando.manejador;
 
 import com.ceiba.ComandoRespuesta;
+import com.ceiba.comando.ComandoUsuario;
+import com.ceiba.comando.fabrica.FabricaUsuario;
 import com.ceiba.manejador.ManejadorComandoRespuesta;
-import com.ceiba.usuario.modelo.entidad.Usuario;
-import com.ceiba.usuario.servicio.ServicioCrearUsuario;
-import org.springframework.stereotype.Component;
+import com.ceiba.modelo.entidad.Usuario;
+import com.ceiba.servicio.usuario.ServicioCrearUsuario;
 
-import com.ceiba.usuario.comando.ComandoUsuario;
-import com.ceiba.usuario.comando.fabrica.FabricaUsuario;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ManejadorCrearUsuario implements ManejadorComandoRespuesta<ComandoUsuario, ComandoRespuesta<Long>> {
