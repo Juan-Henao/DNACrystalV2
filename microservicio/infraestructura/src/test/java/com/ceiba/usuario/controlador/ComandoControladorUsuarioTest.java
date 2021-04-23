@@ -1,4 +1,4 @@
-package com.ceiba.controlador.cliente;
+package com.ceiba.usuario.controlador;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -7,9 +7,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.comando.ComandoCliente;
-import com.ceiba.servicio.testdatabuilder.ComandoClienteTestDataBuilder;
-
+import com.ceiba.usuario.comando.ComandoUsuario;
+import com.ceiba.usuario.controlador.ComandoControladorUsuario;
+import com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ComandoControladorCliente.class)
-public class ComandoControladorClienteTest {
+@WebMvcTest(ComandoControladorUsuario.class)
+public class ComandoControladorUsuarioTest {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -34,12 +34,12 @@ public class ComandoControladorClienteTest {
     @Test
     public void crear() throws Exception{
         // arrange
-        ComandoCliente comandoCompra = new ComandoClienteTestDataBuilder().build();
+        ComandoUsuario usuario = new ComandoUsuarioTestDataBuilder().build();
 
         // act - assert
-        mocMvc.perform(post("/cliente")
+        mocMvc.perform(post("/usuarios")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(comandoCompra)))
+                .content(objectMapper.writeValueAsString(usuario)))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'valor': 2}"));
     }
@@ -48,12 +48,12 @@ public class ComandoControladorClienteTest {
     public void actualizar() throws Exception{
         // arrange
         Long id = 2L;
-        ComandoCliente cliente = new ComandoClienteTestDataBuilder().build();
+        ComandoUsuario usuario = new ComandoUsuarioTestDataBuilder().build();
 
         // act - assert
-        mocMvc.perform(put("/cliente/{id}",id)
+        mocMvc.perform(put("/usuarios/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(cliente)))
+                .content(objectMapper.writeValueAsString(usuario)))
                 .andExpect(status().isOk());
     }
 
@@ -63,7 +63,7 @@ public class ComandoControladorClienteTest {
         Long id = 2L;
 
         // act - assert
-        mocMvc.perform(delete("/cliente/{id}",id)
+        mocMvc.perform(delete("/usuarios/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

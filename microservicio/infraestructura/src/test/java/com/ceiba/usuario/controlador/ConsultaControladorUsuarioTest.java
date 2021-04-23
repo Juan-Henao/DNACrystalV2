@@ -1,5 +1,4 @@
-
-package com.ceiba.controlador.cliente;
+package com.ceiba.usuario.controlador;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
@@ -8,7 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.ceiba.ApplicationMock;
-
+import com.ceiba.usuario.controlador.ConsultaControladorUsuario;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,28 +18,24 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = ApplicationMock.class)
-@WebMvcTest(ConsultaControladorCliente.class)
-public class ConsultaControladorClienteTest {
+@ContextConfiguration(classes= ApplicationMock.class)
+@WebMvcTest(ConsultaControladorUsuario.class)
+public class ConsultaControladorUsuarioTest {
 
-	@Autowired
-	private MockMvc mocMvc;
+    @Autowired
+    private MockMvc mocMvc;
 
-	@Test
-	public void listar() throws Exception { // arrange
+    @Test
+    public void listar() throws Exception {
+        // arrange
 
-		// act - assert
-		mocMvc.perform(get("/cliente").contentType(MediaType.APPLICATION_JSON))
-		.andExpect(status().isOk())
-				.andExpect(jsonPath("$", hasSize(1)))
-				.andExpect(jsonPath("$[0].nombres", is("Juan")));
-	}
+        // act - assert
+        mocMvc.perform(get("/usuarios")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].nombre", is("test")));
+    }
 
-	@Test
-	public void obtener() throws Exception {
-		Long id = 1L;
-		mocMvc.perform(get("/cliente/{id}", id).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-				.andExpect(jsonPath("$.nombres", is("Juan")));
-	}
 
 }
