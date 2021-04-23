@@ -2,7 +2,7 @@ package com.ceiba.usuario.comando.manejador;
 
 import com.ceiba.manejador.ManejadorComando;
 import com.ceiba.modelo.entidad.Usuario;
-import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
+import com.ceiba.servicio.ServicioActualizarUsuario;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.usuario.comando.ComandoUsuario;

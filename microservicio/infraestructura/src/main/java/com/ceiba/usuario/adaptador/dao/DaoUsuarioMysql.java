@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.usuario.puerto.dao.DaoUsuario;
+import com.ceiba.puerto.dao.DaoUsuario;
 
 import org.springframework.stereotype.Component;
 
