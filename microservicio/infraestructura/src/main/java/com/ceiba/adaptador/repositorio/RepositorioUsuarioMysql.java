@@ -14,19 +14,19 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="usuario", value="crear")
-    private static String sqlCrearUsuario;
+    private static String sqlCrear;
 
     @SqlStatement(namespace="usuario", value="actualizar")
-    private static String sqlActualizarUsuario;
+    private static String sqlActualizar;
 
     @SqlStatement(namespace="usuario", value="eliminar")
-    private static String sqlEliminarUsuario;
+    private static String sqlEliminar;
 
     @SqlStatement(namespace="usuario", value="existe")
-    private static String sqlExisteUsuario;
+    private static String sqlExiste;
 
     @SqlStatement(namespace="usuario", value="existeExcluyendoId") 
-    private static String sqlExisteUsuarioExcluyendoIdUsuario;
+    private static String sqlExisteExcluyendoId;
 
     public RepositorioUsuarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -34,7 +34,7 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
 
     @Override
     public Long crear(Usuario usuario) {
-        return this.customNamedParameterJdbcTemplate.crear(usuario, sqlCrearUsuario);
+        return this.customNamedParameterJdbcTemplate.crear(usuario, sqlCrear);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarUsuario, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
     }
 
     @Override
@@ -50,12 +50,12 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("nombre", nombre);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteUsuario,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
 
     @Override
     public void actualizar(Usuario usuario) {
-        this.customNamedParameterJdbcTemplate.actualizar(usuario, sqlActualizarUsuario);
+        this.customNamedParameterJdbcTemplate.actualizar(usuario, sqlActualizar);
     }
 
     @Override
@@ -64,6 +64,6 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
         paramSource.addValue("id", id);
         paramSource.addValue("nombre", nombre);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteUsuarioExcluyendoIdUsuario,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
     }
 }
