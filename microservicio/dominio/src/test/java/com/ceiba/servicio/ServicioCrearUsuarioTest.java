@@ -4,7 +4,7 @@ import com.ceiba.modelo.entidad.Usuario;
 import com.ceiba.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
-import com.ceiba.servicio.testdatabuilder.UsuarioTestDataBuilder;
+import com.ceiba.testdatabuilder.UsuarioTestDataBuilder;
 import org.junit.Test;
 import org.mockito.Mockito;
 
