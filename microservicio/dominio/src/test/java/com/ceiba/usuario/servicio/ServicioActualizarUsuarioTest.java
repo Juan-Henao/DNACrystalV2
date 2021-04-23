@@ -3,7 +3,7 @@ package com.ceiba.usuario.servicio;
 import com.ceiba.modelo.entidad.Usuario;
 import com.ceiba.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-import com.ceiba.servicio.testdatabuilder.UsuarioTestDataBuilder;
+import com.ceiba.controlador.servicio.testdatabuilder.UsuarioTestDataBuilder;
 import org.junit.Test;
 import org.mockito.Mockito;
 
