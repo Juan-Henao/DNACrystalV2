@@ -1,4 +1,4 @@
-package com.ceiba.usuario.controlador;
+package com.ceiba.controlador.rol;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.usuario.controlador.ConsultaControladorUsuario;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ConsultaControladorUsuario.class)
-public class ConsultaControladorUsuarioTest {
+@WebMvcTest(ConsultaControladorRol.class)
+public class ConsultaControladorRolTest {
 
     @Autowired
     private MockMvc mocMvc;
@@ -30,11 +30,29 @@ public class ConsultaControladorUsuarioTest {
         // arrange
 
         // act - assert
-        mocMvc.perform(get("/usuarios")
+        mocMvc.perform(get("/rol")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].nombre", is("test")));
+                .andExpect(jsonPath("$[0].nombre_rol", is("administrador")));
+    }
+
+    @Test
+    public void obtener() throws Exception {
+    	Long id = 1L;
+        mocMvc.perform(get("/rol/{id}", id)
+        		.contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombre_rol", is("administrador")));
+    }
+
+    @Test
+    public void obtenerPorNombreRol() throws Exception {
+    	String nombre_rol = "administrador";
+        mocMvc.perform(get("/rol/only/{nombre_rol}", nombre_rol)
+        		.contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombre_rol", is("administrador")));
     }
 
 
