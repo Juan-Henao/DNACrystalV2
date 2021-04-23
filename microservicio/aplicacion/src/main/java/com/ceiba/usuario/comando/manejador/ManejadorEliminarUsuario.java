@@ -1,4 +1,4 @@
-package com.ceiba.comando.manejador;
+package com.ceiba.usuario.comando.manejador;
 
 import com.ceiba.manejador.ManejadorComando;
 import com.ceiba.servicio.usuario.ServicioEliminarUsuario;
