@@ -1,10 +1,10 @@
 package com.ceiba.usuario.controlador;
 
 import com.ceiba.ComandoRespuesta;
-import com.ceiba.comando.ComandoUsuario;
-import com.ceiba.comando.manejador.ManejadorActualizarUsuario;
-import com.ceiba.comando.manejador.ManejadorCrearUsuario;
-import com.ceiba.comando.manejador.ManejadorEliminarUsuario;
+import com.ceiba.usuario.comando.ComandoUsuario;
+import com.ceiba.usuario.comando.manejador.ManejadorActualizarUsuario;
+import com.ceiba.usuario.comando.manejador.ManejadorCrearUsuario;
+import com.ceiba.usuario.comando.manejador.ManejadorEliminarUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
