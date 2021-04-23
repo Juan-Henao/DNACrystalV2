@@ -1,4 +1,4 @@
-package com.ceiba.usuario.puerto.dao;
+package com.ceiba.puerto.dao;
 
 import com.ceiba.usuario.modelo.dto.DtoUsuario;
 

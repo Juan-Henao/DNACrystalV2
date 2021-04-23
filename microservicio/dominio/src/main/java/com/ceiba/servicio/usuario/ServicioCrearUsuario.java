@@ -1,5 +1,4 @@
-package com.ceiba.usuario.servicio;
-
+package com.ceiba.servicio.usuario;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;

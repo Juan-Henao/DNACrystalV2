@@ -1,4 +1,4 @@
-package com.ceiba.usuario.puerto.repositorio;
+package com.ceiba.puerto.repositorio;
 
 import com.ceiba.usuario.modelo.entidad.Usuario;
 
