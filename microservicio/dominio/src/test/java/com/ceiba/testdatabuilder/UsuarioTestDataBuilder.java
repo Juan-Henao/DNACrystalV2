@@ -1,4 +1,4 @@
-package com.ceiba.usuario.servicio.testdatabuilder;
+package com.ceiba.testdatabuilder;
 
 import com.ceiba.modelo.entidad.Usuario;
 
