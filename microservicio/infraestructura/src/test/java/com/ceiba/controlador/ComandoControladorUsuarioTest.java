@@ -1,4 +1,4 @@
-package com.ceiba.usuario.controlador;
+package com.ceiba.controlador;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
