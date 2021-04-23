@@ -1,4 +1,4 @@
-package com.ceiba.usuario.comando.fabrica;
+package com.ceiba.comando.fabrica;
 
 import com.ceiba.modelo.entidad.Usuario;
 import org.springframework.stereotype.Component;
