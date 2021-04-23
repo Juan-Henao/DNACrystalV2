@@ -1,6 +1,6 @@
 package com.ceiba.puerto.dao;
 
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
+import com.ceiba.modelo.dto.DtoUsuario;
 
 import java.util.List;
 
