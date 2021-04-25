@@ -40,7 +40,7 @@ pipeline {
 			
 		    echo "------------>Unit Tests<------------"
 			
-			sh 'gradle --b ./parqueaderoMicroServicio/build.gradle test'
+			sh 'gradle --b ./microservicio/build.gradle test'
 
 		    
 		}
@@ -58,7 +58,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "------------>Build<------------"
-		sh 'gradle --b ./parqueaderoMicroServicio/build.gradle build -x test'
+		sh 'gradle --b ./microservicio/build.gradle build -x test'
             }
         }  
     }
