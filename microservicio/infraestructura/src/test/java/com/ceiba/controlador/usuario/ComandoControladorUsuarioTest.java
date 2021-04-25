@@ -1,4 +1,4 @@
-package com.ceiba.usuario.controlador;
+package com.ceiba.controlador.usuario;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -8,8 +8,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.controlador.usuario.ComandoControladorUsuario;
+import com.ceiba.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder;
 import com.ceiba.usuario.comando.ComandoUsuario;
-import com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
