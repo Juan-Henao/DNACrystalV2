@@ -1,19 +1,22 @@
 package com.ceiba.cliente.comando;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ComandoCliente {
+public class ComandoCliente{
 
     private Long id;
-    private Long cedula;
-    private String nombre;
+	private String nombres;
+	private String apellidos;
+	private String identificacion;
+	private String email;
+	private LocalDateTime fechaCreacion;
 }

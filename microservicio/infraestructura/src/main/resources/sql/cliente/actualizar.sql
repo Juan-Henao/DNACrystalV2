@@ -1,4 +1,8 @@
 update cliente
-set nombre = :nombre,
-	cedula = :cedula
-where id = :id
+set
+	nombres = :nombres,
+		apellidos = :apellidos,
+		identificacion = :identificacion,
+		email = :email,
+		fecha_creacion = :fechaCreacion
+where id = :id	

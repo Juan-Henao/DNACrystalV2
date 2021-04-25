@@ -1,23 +1,29 @@
 package com.ceiba.cliente.servicio.testdatabuilder;
 
+import java.time.LocalDateTime;
+
 import com.ceiba.cliente.modelo.entidad.Cliente;
+
 
 public class ClienteTestDataBuilder {
 
     private Long id;
-    private Long cedula;
-    private String nombre;
-
-
-    public ClienteTestDataBuilder(){
-        cedula=1234L;
-        nombre="Juan 23";
+	private String nombres;
+	private String apellidos;
+	private String identificacion;
+	private String email;
+	private LocalDateTime fechaCreacion;
+	
+    public ClienteTestDataBuilder() {
+    	id = 1L;
+    	nombres = "Juan";
+    	apellidos = "Henao";
+    	identificacion = "12345";
+    	email = "juan@mail.com";
+    	fechaCreacion = LocalDateTime.now();
+    	       
     }
 
-    public ClienteTestDataBuilder conCedula(Long cedula) {
-        this.cedula = cedula;
-        return this;
-    }
 
     public ClienteTestDataBuilder conId(Long id) {
         this.id = id;
@@ -25,7 +31,8 @@ public class ClienteTestDataBuilder {
     }
 
     public Cliente build() {
-        return new Cliente(id,cedula,nombre);
+        return new  Cliente(id, nombres, apellidos, identificacion, email, fechaCreacion);
+        
+        
     }
-
 }

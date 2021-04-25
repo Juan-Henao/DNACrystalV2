@@ -3,11 +3,17 @@ package com.ceiba.cliente.modelo.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor
 public class DtoCliente {
-
+	
     private Long id;
-    private Long cedula;
-    private String nombre;
+	private String nombres;
+	private String apellidos;
+	private String identificacion;
+	private String email;
+	private LocalDateTime fechaCreacion;
+
 }

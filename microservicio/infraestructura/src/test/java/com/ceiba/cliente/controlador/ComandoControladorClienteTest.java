@@ -1,11 +1,15 @@
 package com.ceiba.cliente.controlador;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.ceiba.ApplicationMock;
 import com.ceiba.cliente.comando.ComandoCliente;
-import com.ceiba.cliente.puerto.dao.DaoCliente;
 import com.ceiba.cliente.servicio.testdatabuilder.ComandoClienteTestDataBuilder;
-import com.ceiba.servicio.puerto.dao.DaoServicio;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +18,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.List;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ComandoControladorClienteTest.class)
+@WebMvcTest(ComandoControladorCliente.class)
 public class ComandoControladorClienteTest {
 
     @Autowired
@@ -32,18 +31,15 @@ public class ComandoControladorClienteTest {
     @Autowired
     private MockMvc mocMvc;
 
-    @Autowired
-    private DaoCliente daoCliente;
-
     @Test
     public void crear() throws Exception{
         // arrange
-        ComandoCliente cliente = new ComandoClienteTestDataBuilder().build();
+        ComandoCliente comandoCompra = new ComandoClienteTestDataBuilder().build();
 
         // act - assert
-        mocMvc.perform(post("/clientes")
+        mocMvc.perform(post("/cliente")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(cliente)))
+                .content(objectMapper.writeValueAsString(comandoCompra)))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'valor': 2}"));
     }
@@ -53,8 +49,9 @@ public class ComandoControladorClienteTest {
         // arrange
         Long id = 2L;
         ComandoCliente cliente = new ComandoClienteTestDataBuilder().build();
+
         // act - assert
-        mocMvc.perform(put("/clientes/{id}",id)
+        mocMvc.perform(put("/cliente/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(cliente)))
                 .andExpect(status().isOk());
@@ -66,7 +63,7 @@ public class ComandoControladorClienteTest {
         Long id = 2L;
 
         // act - assert
-        mocMvc.perform(delete("/clientes/{id}",id)
+        mocMvc.perform(delete("/cliente/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

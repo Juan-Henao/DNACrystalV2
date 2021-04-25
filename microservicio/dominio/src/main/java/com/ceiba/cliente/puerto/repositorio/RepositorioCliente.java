@@ -1,38 +1,43 @@
 package com.ceiba.cliente.puerto.repositorio;
+
 import com.ceiba.cliente.modelo.entidad.Cliente;
 
 public interface RepositorioCliente {
+	/**
+	 * Permite crear un Cliente
+	 * 
+	 * @param Cliente
+	 * @return el id generado
+	 */
+	Long crear(Cliente Cliente);
 
-    /**
-     * Permite crear un cliente
-     * @param cliente
-     * @return el id generado
-     */
-    Long crear(Cliente cliente);
+	/**
+	 * Permite actualizar un Cliente
+	 * 
+	 * @param Cliente
+	 */
+	void actualizar(Cliente Cliente);
 
-    /**
-     * Permite actualizar un cliente
-     * @param cliente
-     */
-    void actualizar(Cliente cliente);
+	/**
+	 * Permite eliminar un Cliente
+	 * 
+	 * @param id
+	 */
+	void eliminar(Long id);
 
-    /**
-     * Permite eliminar un cliente
-     * @param id
-     */
-    void eliminar(Long id);
+	/**
+	 * Permite validar si existe un Cliente con una identificacion
+	 * 
+	 * @param identificacion
+	 * @return si existe o no
+	 */
+	boolean existe(String identificacion);
 
-    /**
-     * Permite validar si existe un cliente con un nombre
-     * @param cedula
-     * @return si existe o no
-     */
-    boolean existe(Long cedula);
-
-    /**
-     * Permite validar si existe un cliente con un nombre excluyendo un id
-     * @param cedula
-     * @return si existe o no
-     */
-    boolean existeExcluyendoId(Long id,Long cedula);
+	/**
+	 * Permite validar si existe un Cliente con una identificacion excluyendo un id
+	 * 
+	 * @param identificacion
+	 * @return si existe o no
+	 */
+	boolean existeExcluyendoId(Long id, String identificacion);
 }

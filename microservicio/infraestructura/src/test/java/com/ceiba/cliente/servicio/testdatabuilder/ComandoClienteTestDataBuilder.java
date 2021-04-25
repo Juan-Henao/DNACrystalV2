@@ -1,25 +1,30 @@
 package com.ceiba.cliente.servicio.testdatabuilder;
 
+import java.time.LocalDateTime;
+
 import com.ceiba.cliente.comando.ComandoCliente;
-import java.util.UUID;
+
 
 public class ComandoClienteTestDataBuilder {
 
     private Long id;
-    private Long cedula;
-    private String nombre;
+	private String nombres;
+	private String apellidos;
+	private String identificacion;
+	private String email;
+	private LocalDateTime fechaCreacion;
 
-    public ComandoClienteTestDataBuilder() {
-        nombre = UUID.randomUUID().toString();
-        cedula = 12345L;
-    }
+	public ComandoClienteTestDataBuilder() {
 
-    public ComandoClienteTestDataBuilder conCedula(Long cedula) {
-        this.cedula = cedula;
-        return this;
-    }
+		nombres = "Juan David";
+		apellidos = "Henao Marin";
+		identificacion = "4359629";
+		email = "juan@mail.com";
+		fechaCreacion = LocalDateTime.now();
+		
+	}
 
-    public ComandoCliente build() {
-        return new ComandoCliente(id,cedula, nombre);
-    }
+	public ComandoCliente build() {
+		return new ComandoCliente(id, nombres, apellidos, identificacion, email, fechaCreacion);
+	}
 }

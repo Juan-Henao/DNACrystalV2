@@ -1,1 +1,1 @@
-select count(1) from cliente where cedula = :cedula
+select count(1) from cliente where identificacion = :identificacion
