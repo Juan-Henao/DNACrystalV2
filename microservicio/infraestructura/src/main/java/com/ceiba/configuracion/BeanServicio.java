@@ -26,49 +26,7 @@ import org.springframework.context.annotation.Configuration;
 public class BeanServicio {
 	
 	
-	/*
-	 * 
-	 * SERVICIOS DE ITEMSCOMPRA
-	 * 
-	 */
-    @Bean
-    public ServicioCrearItemsCompra servicioCrearItemsCompra(RepositorioItemsCompra repositorioItemsCompra, DaoParametro daoParametro,
-    		ServicioActualizarCompra servicioActualizarCompra, DaoCompra daoCompra) {
-        return new ServicioCrearItemsCompra(repositorioItemsCompra, daoParametro,servicioActualizarCompra,daoCompra);
-    }
 
-    @Bean
-    public ServicioEliminarItemsCompra servicioEliminarItemsCompra(RepositorioItemsCompra repositorioItemsCompra,ServicioActualizarCompra servicioActualizarCompra,
-    		DaoCompra daoCompra,DaoItemsCompra daoItemsCompra) {
-        return new ServicioEliminarItemsCompra(repositorioItemsCompra, servicioActualizarCompra, daoCompra, daoItemsCompra);
-    }
-
-    @Bean
-    public ServicioActualizarItemsCompra servicioActualizarItemsCompra(RepositorioItemsCompra repositorioItemsCompra ,
-    		DaoParametro daoParametro,ServicioActualizarCompra servicioActualizarCompra, DaoCompra daoCompra) {
-        return new ServicioActualizarItemsCompra(repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
-    }
-	
-	/*
-	 * 
-	 * SERVICIOS DEL COMPRA
-	 * 
-	 */
-    @Bean
-    public ServicioCrearCompra servicioCrearCompra(RepositorioCompra repositorioCompra, DaoParametro daoParametro, DaoItemsCompra daoItemsCompra) {
-        return new ServicioCrearCompra(repositorioCompra, daoParametro, daoItemsCompra);
-    }
-
-    @Bean
-    public ServicioEliminarCompra servicioEliminarCompra(RepositorioCompra repositorioCompra) {
-        return new ServicioEliminarCompra(repositorioCompra);
-    }
-
-    @Bean
-    public ServicioActualizarCompra servicioActualizarCompra(RepositorioCompra repositorioCompra, 
-    		DaoParametro daoParametro, DaoItemsCompra daoItemsCompra) {
-        return new ServicioActualizarCompra(repositorioCompra,daoParametro);
-    }
     
     /*
      * Servicios Usuario
