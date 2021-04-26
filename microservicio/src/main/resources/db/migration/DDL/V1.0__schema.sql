@@ -5,3 +5,12 @@ create table usuario (
  fecha_creacion datetime null,
  primary key (id)
 );
+create table cliente (
+	id INT NOT NULL AUTO_INCREMENT,
+	nombres varchar(100) NOT NULL,
+	apellidos varchar(100) NOT NULL,
+	identificacion varchar(100) NOT NULL,
+	email varchar(100) NOT NULL,
+	fecha_creacion datetime,
+	PRIMARY KEY (id)
+);
