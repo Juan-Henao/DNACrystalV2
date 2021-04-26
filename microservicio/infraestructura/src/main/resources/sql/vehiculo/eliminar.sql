@@ -1,3 +1,3 @@
-delete
-from vehiculo
+delete 
+from compra
 where id = :id

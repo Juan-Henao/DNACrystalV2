@@ -4,6 +4,9 @@ import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.vehiculo.modelo.entidad.Vehiculo;
 import com.ceiba.vehiculo.puerto.repositorio.RepositorioVehiculo;
+
+import java.time.LocalDateTime;
+
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -27,8 +30,8 @@ public class RepositorioVehiculoMysql implements RepositorioVehiculo {
     @SqlStatement(namespace="vehiculo", value="existeExcluyendoId")
     private static String sqlExisteExcluyendoId;
 
-    @SqlStatement(namespace="vehiculo", value="existeCliente")
-    private static String sqlExisteCliente;
+	@SqlStatement(namespace = "vehiculo", value = "contarComprasPorDia")
+	private static String sqlcontarComprasPorDia;
 
     public RepositorioVehiculoMysql (CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate){
         this.customNamedParameterJdbcTemplate=customNamedParameterJdbcTemplate;
@@ -48,10 +51,10 @@ public class RepositorioVehiculoMysql implements RepositorioVehiculo {
     }
 
     @Override
-    public boolean existe(String placa) {
+    public boolean existe(LocalDateTime fechaCompra, Long idCliente) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("placa", placa);
-
+        paramSource.addValue("fechaCompra", fechaCompra);
+        paramSource.addValue("idCliente", idCliente);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
 
@@ -60,19 +63,15 @@ public class RepositorioVehiculoMysql implements RepositorioVehiculo {
         this.customNamedParameterJdbcTemplate.actualizar(vehiculo, sqlActualizar);
     }
 
-    @Override
-    public boolean existeExcluyendoId(Long id, String placa) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+	@Override
+	public boolean existeExcluyendoId(Long id, LocalDateTime fechaCompra, Long idCliente) {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
-        paramSource.addValue("placa", placa);
+        paramSource.addValue("fechaCompra", fechaCompra);
+        paramSource.addValue("idCliente", idCliente);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
-    }
+	}
 
-    @Override
-    public boolean existeCliente(Long cliente){
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("cliente", cliente);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteCliente,paramSource, Boolean.class);
-    }
+
 }

@@ -1,1 +1,2 @@
-insert into vehiculo (cliente, placa) values (:cliente, :placa)
+insert into compra (idCliente, total,fechaCompra ,fechaEntrega,estadoCompra) 
+values (:idCliente, :total, :fechaCompra, :fechaEntrega,:estadoCompra)

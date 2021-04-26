@@ -10,4 +10,4 @@ co.estadoCompra as estado_compra,
  cl.email as email_cliente,
  cl.identificacion as identificacion_cliente,
  cl.fecha_creacion as fecha_creacion_cliente
-from  compra co join cliente cl on cl.id = co.idCliente
+from  compra co join cliente cl on cl.id = co.idCliente where co.id = :id

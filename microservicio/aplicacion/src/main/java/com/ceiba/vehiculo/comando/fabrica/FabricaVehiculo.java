@@ -8,11 +8,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FabricaVehiculo {
-    public Vehiculo crear(ComandoVehiculo comandoVehiculo) {
-        return new Vehiculo(
-                comandoVehiculo.getId(),
-                comandoVehiculo.getCliente(),
-                comandoVehiculo.getPlaca()
-        );
-    }
+    public Vehiculo crear(ComandoVehiculo comandoCompra) {
+        return new Vehiculo(comandoCompra.getId(), comandoCompra.getIdCliente(), comandoCompra.getTotal(),
+				comandoCompra.getFechaCompra(), comandoCompra.getFechaEntrega(),comandoCompra.getEstadoCompra());
+
+	}
+
 }

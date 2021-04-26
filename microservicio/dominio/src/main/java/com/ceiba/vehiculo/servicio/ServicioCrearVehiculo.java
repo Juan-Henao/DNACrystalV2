@@ -7,32 +7,31 @@ import com.ceiba.vehiculo.puerto.repositorio.RepositorioVehiculo;
 
 public class ServicioCrearVehiculo {
 
-    private static final String EL_VEHICULO_YA_EXISTE_EN_EL_SISTEMA = "El vehículo ya existe en el sistema";
-    private static final String EL_CLIENTE_NO_EXISTE_EN_EL_SISTEMA = "El cliente no existe en el sistema";
+	private static final String LA_COMPRA_YA_EXISTE_EN_EL_SISTEMA = "la Compra ya existe en el sistema";
+	private static final String LA_COMPRA_NO_SE_REALIZA_FESTIVO = "la Compra no se puede realizar ya que es Festivo";
+	private static final String EL_HORARIO_DE_LA_COMPRA_NO_VALIDO = "El horario de la compra no es valido";
+	private static final int SATURDAY = 6;
+	private static final int SUNDAY = 7;
+	private final RepositorioVehiculo repositorioCompra;
 
-    private final RepositorioVehiculo repositorioVehiculo;
 
-    public ServicioCrearVehiculo(RepositorioVehiculo repositorioVehiculo) {
-        this.repositorioVehiculo = repositorioVehiculo;
-    }
+	public ServicioCrearVehiculo(RepositorioVehiculo repositorioCompra) {
+		this.repositorioCompra = repositorioCompra;
+	
+	}
 
-    public Long ejecutar(Vehiculo vehiculo) {
-        validarExistenciaPrevia(vehiculo);
-        validarExistenciaCliente(vehiculo);
-        return this.repositorioVehiculo.crear(vehiculo);
-    }
+	public Long ejecutar(Vehiculo compra) {
+		validarExistenciaPrevia(compra);
 
-    private void validarExistenciaPrevia(Vehiculo vehiculo) {
-        boolean existe = this.repositorioVehiculo.existe(vehiculo.getPlaca());
-        if(existe) {
-            throw new ExcepcionDuplicidad(EL_VEHICULO_YA_EXISTE_EN_EL_SISTEMA);
-        }
-    }
 
-    private void validarExistenciaCliente(Vehiculo vehiculo) {
-        boolean existeCliente = this.repositorioVehiculo.existeCliente(vehiculo.getCliente());
-        if(!existeCliente) {
-            throw new ExcepcionNoExiste(EL_CLIENTE_NO_EXISTE_EN_EL_SISTEMA);
-        }
-    }
+
+		return this.repositorioCompra.crear(compra);
+	}
+	private void validarExistenciaPrevia(Vehiculo compra) {
+		boolean existe = this.repositorioCompra.existe(compra.getFechaCompra(), compra.getIdCliente());
+		if (existe) {
+			throw new ExcepcionDuplicidad(LA_COMPRA_YA_EXISTE_EN_EL_SISTEMA);
+		}
+	}
+
 }

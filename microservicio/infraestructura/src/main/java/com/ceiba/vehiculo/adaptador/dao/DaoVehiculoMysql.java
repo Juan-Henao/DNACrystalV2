@@ -24,4 +24,10 @@ public class DaoVehiculoMysql implements DaoVehiculo {
     public List<DtoVehiculo> listar() {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoVehiculo());
     }
+
+	@Override
+	public DtoVehiculo obtener(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

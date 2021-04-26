@@ -1,25 +1,28 @@
 package com.ceiba.vehiculo.servicio.testdatabuilder;
 import com.ceiba.vehiculo.comando.ComandoVehiculo;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class ComandoVehiculoTestDataBuilder {
 
-    private Long id;
-    private Long cliente;
-    private String placa;
+	private Long id;
+	private Long idCliente;
+    private Double total;
+	private LocalDateTime fechaCompra;
+	private LocalDateTime fechaEntrega;
+	private String estadoCompra;
 
     public ComandoVehiculoTestDataBuilder() {
-        cliente = 1L;
-        placa = UUID.randomUUID().toString();
+		idCliente = 1L;
+		total = 250000D;
+		fechaCompra = LocalDateTime.now();
+		fechaEntrega = LocalDateTime.now().plusDays(6);
+		estadoCompra ="en_proceso";
     }
 
-    public ComandoVehiculoTestDataBuilder conPlaca(String placa) {
-        this.placa = placa;
-        return this;
-    }
 
     public ComandoVehiculo build() {
-        return new ComandoVehiculo(id,cliente, placa);
+        return new ComandoVehiculo(id, idCliente, total, fechaCompra, fechaEntrega, estadoCompra);
     }
 }

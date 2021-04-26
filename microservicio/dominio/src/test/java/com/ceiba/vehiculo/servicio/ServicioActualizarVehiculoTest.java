@@ -15,9 +15,10 @@ public class ServicioActualizarVehiculoTest {
         // arrange
         Vehiculo vehiculo = new VehiculoTestDataBuilder().conId(1L).build();
         RepositorioVehiculo repositorioVehiculo = Mockito.mock(RepositorioVehiculo.class);
-        Mockito.when(repositorioVehiculo.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioVehiculo.existeExcluyendoId(Mockito.anyLong(),Mockito.any(),Mockito.any())).thenReturn(true);
         ServicioActualizarVehiculo servicioActualizarVehiculo = new ServicioActualizarVehiculo(repositorioVehiculo);
         // act - assert
-        BasePrueba.assertThrows(() -> servicioActualizarVehiculo.ejecutar(vehiculo), ExcepcionDuplicidad.class,"El vehículo ya existe en el sistema");
+        BasePrueba.assertThrows(() -> servicioActualizarVehiculo.ejecutar(vehiculo), ExcepcionDuplicidad.class,
+        		"La Compra ya existe en el sistema");
     }
 }

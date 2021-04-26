@@ -6,23 +6,28 @@ import com.ceiba.vehiculo.puerto.repositorio.RepositorioVehiculo;
 
 public class ServicioActualizarVehiculo {
 
-    private static final String EL_VEHICULO_YA_EXISTE_EN_EL_SISTEMA = "El vehículo ya existe en el sistema";
+	private static final String LA_COMPRA_YA_EXISTE_EN_EL_SISTEMA = "La Compra ya existe en el sistema";
 
-    private final RepositorioVehiculo repositorioVehiculo;
+	private final RepositorioVehiculo repositorioCompra;
 
-    public ServicioActualizarVehiculo(RepositorioVehiculo repositorioVehiculo) {
-        this.repositorioVehiculo = repositorioVehiculo;
-    }
+	public ServicioActualizarVehiculo(RepositorioVehiculo repositorioCompra) {
+		this.repositorioCompra = repositorioCompra;
+	}
 
-    public void ejecutar(Vehiculo vehiculo) {
-        validarExistenciaPrevia(vehiculo);
-        this.repositorioVehiculo.actualizar(vehiculo);
-    }
+	public void ejecutar(Vehiculo compra) {
+		validarExistenciaPrevia(compra);
 
-    private void validarExistenciaPrevia(Vehiculo vehiculo) {
-        boolean existe = this.repositorioVehiculo.existeExcluyendoId(vehiculo.getId(),vehiculo.getPlaca());
-        if(existe) {
-            throw new ExcepcionDuplicidad(EL_VEHICULO_YA_EXISTE_EN_EL_SISTEMA);
-        }
-    }
+		
+		
+
+		this.repositorioCompra.actualizar(compra);
+	}
+
+	private void validarExistenciaPrevia(Vehiculo compra) {
+		boolean existe = this.repositorioCompra.existeExcluyendoId(compra.getId(), compra.getFechaCompra(),
+				compra.getIdCliente());
+		if (existe) {
+			throw new ExcepcionDuplicidad(LA_COMPRA_YA_EXISTE_EN_EL_SISTEMA);
+		}
+	}
 }

@@ -17,12 +17,14 @@ create table cliente (
 );
 
 create table vehiculo (
- id int(11) not null auto_increment,
- cliente int(11) not null,
- placa varchar(100) not null,
- primary key (id),
- FOREIGN KEY (cliente) REFERENCES cliente(id)
- ON DELETE RESTRICT
+	id INT NOT NULL AUTO_INCREMENT,
+    idCliente INT NOT NULL,
+    total DOUBLE NOT NULL,
+    fechaCompra datetime,
+    fechaEntrega datetime,
+    estadoCompra varchar(100) NOT NULL,
+	PRIMARY KEY (id),
+    FOREIGN KEY (idCliente) REFERENCES cliente(id)
 );
 
 create table servicio (

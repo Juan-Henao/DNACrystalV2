@@ -16,20 +16,11 @@ public class ServicioCrearVehiculoTest {
         // arrange
         Vehiculo vehiculo = new VehiculoTestDataBuilder().build();
         RepositorioVehiculo repositorioVehiculo = Mockito.mock(RepositorioVehiculo.class);
-        Mockito.when(repositorioVehiculo.existe(Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioVehiculo.existe(Mockito.any(),Mockito.anyLong())).thenReturn(true);
         ServicioCrearVehiculo servicioCrearVehiculo = new ServicioCrearVehiculo(repositorioVehiculo);
         // act - assert
-        BasePrueba.assertThrows(() -> servicioCrearVehiculo.ejecutar(vehiculo), ExcepcionDuplicidad.class,"El vehículo ya existe en el sistema");
+        BasePrueba.assertThrows(() -> servicioCrearVehiculo.ejecutar(vehiculo), ExcepcionDuplicidad.class,
+        		"la Compra ya existe en el sistema");
     }
 
-    @Test
-    public void validarClienteExistenciaTest() {
-        // arrange
-        Vehiculo vehiculo = new VehiculoTestDataBuilder().build();
-        RepositorioVehiculo repositorioVehiculo = Mockito.mock(RepositorioVehiculo.class);
-        Mockito.when(repositorioVehiculo.existeCliente(Mockito.anyLong())).thenReturn(false);
-        ServicioCrearVehiculo servicioCrearVehiculo = new ServicioCrearVehiculo(repositorioVehiculo);
-        // act - assert
-        BasePrueba.assertThrows(() -> servicioCrearVehiculo.ejecutar(vehiculo), ExcepcionNoExiste.class,"El cliente no existe en el sistema");
-    }
 }
