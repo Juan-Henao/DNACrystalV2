@@ -17,9 +17,6 @@ import com.ceiba.compra.servicio.testdatabuilder.CompraTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionDiaFestivo;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionHorarioLaboral;
-import com.ceiba.itemsCompra.modelo.dto.DtoItemsCompra;
-import com.ceiba.itemsCompra.puerto.dao.DaoItemsCompra;
-import com.ceiba.itemscompra.servicio.testdatabuilder.DtoItemsCompraTestDataBuilder;
 import com.ceiba.parametro.modelo.dto.DtoParametro;
 import com.ceiba.parametro.puerto.dao.DaoParametro;
 import com.ceiba.parametro.testdatabuilder.DtoParametroTestDataBuilder;
@@ -37,9 +34,8 @@ public class ServicioCrearCompraTest {
 
 		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(true);
 		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
-		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
 
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionDuplicidad.class,
@@ -65,9 +61,8 @@ public class ServicioCrearCompraTest {
 			}
 		});
 
-		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
 
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro);
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionDiaFestivo.class,
 				"la Compra no se puede realizar ya que es Festivo");
@@ -91,9 +86,8 @@ public class ServicioCrearCompraTest {
 		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.HORA_SALIDA)).thenReturn(
 				new DtoParametroTestDataBuilder().conValor("20").conEnum(EnumParametro.HORA_SALIDA).build());
 
-		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
 
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro);
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionHorarioLaboral.class,
 				"El horario de la compra no es valido");
@@ -117,9 +111,8 @@ public class ServicioCrearCompraTest {
 		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.HORA_SALIDA)).thenReturn(
 				new DtoParametroTestDataBuilder().conValor("20").conEnum(EnumParametro.HORA_SALIDA).build());
 
-		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
 
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro);
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionHorarioLaboral.class,
 				"El horario de la compra no es valido");
@@ -138,9 +131,7 @@ public class ServicioCrearCompraTest {
 
 		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
 
-		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
-
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro);
 		
 		Mockito.when(daoParametro.listarPorEnum(EnumParametro.FESTIVOS)).thenReturn(new ArrayList<DtoParametro>() {
 			{
@@ -184,16 +175,9 @@ public class ServicioCrearCompraTest {
 
 		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
 		
-		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
 
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
-		Mockito.when(daoItemsCompra.obtenerPorCompra(1L)).thenReturn(new ArrayList<DtoItemsCompra>() {
-			{
-				add(new DtoItemsCompraTestDataBuilder()
-						.conValor(5000D)
-						.build());
-			}
-		});
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro);
+
 
 
 		Mockito.when(daoParametro.listarPorEnum(EnumParametro.FESTIVOS)).thenReturn(new ArrayList<DtoParametro>() {
@@ -238,10 +222,8 @@ public class ServicioCrearCompraTest {
 
 		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
 
-		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
 
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
-		Mockito.when(daoItemsCompra.obtener(1L)).thenReturn(new DtoItemsCompraTestDataBuilder().build());
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro);
 
 		Mockito.when(daoParametro.listarPorEnum(EnumParametro.FESTIVOS)).thenReturn(new ArrayList<DtoParametro>() {
 			{

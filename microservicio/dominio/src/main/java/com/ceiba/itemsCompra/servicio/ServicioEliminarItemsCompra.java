@@ -32,7 +32,7 @@ public class ServicioEliminarItemsCompra {
 	
 	private void cambiarValorCompra(DtoItemsCompra dtoItemsCompra) {
 		DtoCompra dtoCompra = daoCompra.obtener(dtoItemsCompra.getIdCompra().getId());
-		dtoCompra.setTotal(dtoCompra.getTotal()+dtoItemsCompra.getValor());
+		dtoCompra.setTotal(dtoCompra.getTotal()-dtoItemsCompra.getValor());
 		
 		servicioActualizarCompra.ejecutar(
 				new Compra(dtoCompra.getId(),dtoCompra.getIdCliente().getId(),dtoCompra.getTotal(),dtoCompra.getFechaCompra(),dtoCompra.getFechaEntrega(),dtoCompra.getEstadoCompra() ));

@@ -1,6 +1,5 @@
 package com.ceiba.compra.servicio;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -11,12 +10,9 @@ import com.ceiba.compra.puerto.repositorio.RepositorioCompra;
 import com.ceiba.dominio.excepcion.ExcepcionDiaFestivo;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionHorarioLaboral;
-import com.ceiba.itemsCompra.modelo.dto.DtoItemsCompra;
-import com.ceiba.itemsCompra.puerto.dao.DaoItemsCompra;
 import com.ceiba.parametro.modelo.dto.DtoParametro;
 import com.ceiba.parametro.puerto.dao.DaoParametro;
 import com.ceiba.util.EnumParametro;
-
 
 public class ServicioCrearCompra {
 
@@ -27,12 +23,10 @@ public class ServicioCrearCompra {
 	private static final int SUNDAY = 7;
 	private final RepositorioCompra repositorioCompra;
 	private final DaoParametro daoParametro;
-	private final DaoItemsCompra daoItemsCompra;
 
-	public ServicioCrearCompra(RepositorioCompra repositorioCompra, DaoParametro daoParametro, DaoItemsCompra daoItemsCompra) {
+	public ServicioCrearCompra(RepositorioCompra repositorioCompra, DaoParametro daoParametro) {
 		this.repositorioCompra = repositorioCompra;
 		this.daoParametro = daoParametro;
-		this.daoItemsCompra = daoItemsCompra;
 	}
 
 	public Long ejecutar(Compra compra) {
@@ -41,23 +35,11 @@ public class ServicioCrearCompra {
 		validarDiaFestivo(compra, daoParametro.listarPorEnum(EnumParametro.FESTIVOS));
 
 		validarHorarioHabil(compra);
-		calcularValorCompra(compra , daoItemsCompra.obtenerPorCompra(compra.getId()));
 		if (verificarFinDeSemana(compra)) {
 			asignarRecargoFinDeSemana(compra);
 		}
 		asignarFechaEntrega(compra);
 		return this.repositorioCompra.crear(compra);
-	}
-
-	private void calcularValorCompra(Compra compra, List<DtoItemsCompra> ListDtoItemsCompra) {
-		
-		Double valor = BigDecimal.ZERO.doubleValue();
-		for (DtoItemsCompra dtoItemsCompra : ListDtoItemsCompra) {
-			
-			valor += dtoItemsCompra.getValor();
-
-		}
-		compra.setTotal(valor);		
 	}
 
 	private void validarExistenciaPrevia(Compra compra) {
