@@ -10,7 +10,7 @@ import com.ceiba.compra.modelo.dto.DtoCompra;
 public class DtoCompraTestDataBuilder {
 
 	Long id;
-	DtoCliente idCliente;
+	Long idCliente;
 	Double total;
 	LocalDateTime fechaCompra;
 	LocalDateTime fechaEntrega;
@@ -18,7 +18,7 @@ public class DtoCompraTestDataBuilder {
 
 	public DtoCompraTestDataBuilder() {
 		id = 1L;
-		idCliente = new DtoCliente(1L, "Juan", "Henao", "123", "juan@mail.com", LocalDateTime.now());
+		idCliente = 1L;
 		total = 0D;
 		fechaCompra = LocalDateTime.now();
 		fechaEntrega = LocalDateTime.now();
