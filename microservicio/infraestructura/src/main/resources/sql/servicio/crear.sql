@@ -1,1 +1,0 @@
-insert into servicio (vehiculo, fecha_entrada,fecha_salida,activo,valor_a_pagar,horas) values (:vehiculo, :fechaEntrada, :fechaSalida, :activo,:valorAPagar,:horas)

@@ -1,0 +1,1 @@
+select count(1) from itemsCompra where fechaCreacion = :fechaCreacion and idCompra = :idCompra
