@@ -25,12 +25,15 @@ public class ServicioCrearItemsCompra {
 
 	private final RepositorioItemsCompra repositorioItemsCompra;
 	private final DaoParametro daoParametro;
+	private final ServicioActualizarCompra servicioActualizarCompra;
+	private final DaoCompra daoCompra;
 
-
-	public ServicioCrearItemsCompra(RepositorioItemsCompra repositorioItemsCompra, DaoParametro daoParametro) {
+	public ServicioCrearItemsCompra(RepositorioItemsCompra repositorioItemsCompra, DaoParametro daoParametro,
+			ServicioActualizarCompra servicioActualizarCompra, DaoCompra daoCompra) {
 		this.repositorioItemsCompra = repositorioItemsCompra;
 		this.daoParametro = daoParametro;
-
+		this.servicioActualizarCompra = servicioActualizarCompra;
+		this.daoCompra = daoCompra;
 	}
 
 	public Long ejecutar(ItemsCompra itemsCompra) {
@@ -42,11 +45,19 @@ public class ServicioCrearItemsCompra {
 				.parseLong(daoParametro.obtenerPorEnum(EnumParametro.ITEMS_MINIMOS_DESCUENTO).getValor())) {
 			aplicarDescuento(itemsCompra);
 		}
+		cambiarValorCompra(itemsCompra);
 
 		return this.repositorioItemsCompra.crear(itemsCompra);
 	}
 
-	
+	private void cambiarValorCompra(ItemsCompra itemsCompra) {
+		DtoCompra dtoCompra = daoCompra.obtener(itemsCompra.getIdCompra());
+		dtoCompra.setTotal(dtoCompra.getTotal()+itemsCompra.getValor());
+		
+		servicioActualizarCompra.ejecutar(
+				new Compra(dtoCompra.getId(),dtoCompra.getIdCliente(),dtoCompra.getTotal(),dtoCompra.getFechaCompra(),dtoCompra.getFechaEntrega(),dtoCompra.getEstadoCompra() ));
+				
+	}
 
 	private void validarExistenciaPrevia(ItemsCompra itemsCompra) {
 		boolean existe = this.repositorioItemsCompra.existe(itemsCompra.getFechaCreacion(), itemsCompra.getIdCompra());

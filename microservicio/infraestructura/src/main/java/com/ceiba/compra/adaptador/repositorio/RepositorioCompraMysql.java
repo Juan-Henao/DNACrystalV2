@@ -17,19 +17,19 @@ public class RepositorioCompraMysql implements RepositorioCompra {
 	private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
 	@SqlStatement(namespace = "compra", value = "crear")
-	private static String sqlCrearCompra;
+	private static String sqlCrear;
 
 	@SqlStatement(namespace = "compra", value = "actualizar")
-	private static String sqlActualizarCompra;
+	private static String sqlActualizar;
 
 	@SqlStatement(namespace = "compra", value = "eliminar")
-	private static String sqlEliminarCompra;
+	private static String sqlEliminar;
 
 	@SqlStatement(namespace = "compra", value = "existe")
-	private static String sqlExisteCompra;
+	private static String sqlExiste;
 
 	@SqlStatement(namespace = "compra", value = "existeExcluyendoId")
-	private static String sqlExisteExcluyendoIdCompra;
+	private static String sqlExisteExcluyendoId;
 
 	@SqlStatement(namespace = "compra", value = "contarComprasPorDia")
 	private static String sqlcontarComprasPorDia;
@@ -40,13 +40,13 @@ public class RepositorioCompraMysql implements RepositorioCompra {
 
 	@Override
 	public Long crear(Compra compra) {
-        return this.customNamedParameterJdbcTemplate.crear(compra, sqlCrearCompra);
+        return this.customNamedParameterJdbcTemplate.crear(compra, sqlCrear);
 
 	}
 
 	@Override
 	public void actualizar(Compra compra) {
-        this.customNamedParameterJdbcTemplate.actualizar(compra, sqlActualizarCompra);
+        this.customNamedParameterJdbcTemplate.actualizar(compra, sqlActualizar);
 		
 	}
 
@@ -55,7 +55,7 @@ public class RepositorioCompraMysql implements RepositorioCompra {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarCompra, paramSource);		
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);		
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class RepositorioCompraMysql implements RepositorioCompra {
         paramSource.addValue("fechaCompra", fechaCompra);
         paramSource.addValue("idCliente", idCliente);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteCompra,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class RepositorioCompraMysql implements RepositorioCompra {
         paramSource.addValue("fechaCompra", fechaCompra);
         paramSource.addValue("idCliente", idCliente);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoIdCompra,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
 	}
 	
 
