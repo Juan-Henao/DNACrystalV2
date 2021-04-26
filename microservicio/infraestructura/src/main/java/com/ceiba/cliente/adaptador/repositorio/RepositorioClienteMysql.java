@@ -33,14 +33,14 @@ public class RepositorioClienteMysql implements RepositorioCliente {
     }
 
 	@Override
-	public Long crear(Cliente Cliente) {
-        return this.customNamedParameterJdbcTemplate.crear(Cliente, sqlCrear);
+	public Long crear(Cliente cliente) {
+        return this.customNamedParameterJdbcTemplate.crear(cliente, sqlCrear);
 
 	}
 
 	@Override
-	public void actualizar(Cliente Cliente) {
-        this.customNamedParameterJdbcTemplate.actualizar(Cliente, sqlActualizar);
+	public void actualizar(Cliente cliente) {
+        this.customNamedParameterJdbcTemplate.actualizar(cliente, sqlActualizar);
 		
 	}
 

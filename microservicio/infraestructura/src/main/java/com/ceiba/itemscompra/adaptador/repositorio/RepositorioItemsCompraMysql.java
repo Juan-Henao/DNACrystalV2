@@ -35,14 +35,14 @@ public class RepositorioItemsCompraMysql implements RepositorioItemsCompra {
 	}
 
 	@Override
-	public Long crear(ItemsCompra ItemsCompra) {
-		return this.customNamedParameterJdbcTemplate.crear(ItemsCompra, sqlCrear);
+	public Long crear(ItemsCompra itemsCompra) {
+		return this.customNamedParameterJdbcTemplate.crear(itemsCompra, sqlCrear);
 
 	}
 
 	@Override
-	public void actualizar(ItemsCompra ItemsCompra) {
-		this.customNamedParameterJdbcTemplate.actualizar(ItemsCompra, sqlActualizar);
+	public void actualizar(ItemsCompra itemsCompra) {
+		this.customNamedParameterJdbcTemplate.actualizar(itemsCompra, sqlActualizar);
 
 	}
 
