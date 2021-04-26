@@ -36,7 +36,7 @@ public class ServicioCrearItemsCompraTest {
 		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
 
 		ServicioCrearItemsCompra servicioCrearItemsCompra = new ServicioCrearItemsCompra(repositorioItemsCompra,
-				daoParametro, servicioActualizarCompra, daoCompra);
+				daoParametro);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioCrearItemsCompra.ejecutar(itemsCompra), ExcepcionDuplicidad.class,
@@ -62,7 +62,7 @@ public class ServicioCrearItemsCompraTest {
 		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
 
 		ServicioCrearItemsCompra servicioCrearItemsCompra = new ServicioCrearItemsCompra(repositorioItemsCompra,
-				daoParametro, servicioActualizarCompra, daoCompra);
+				daoParametro);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioCrearItemsCompra.ejecutar(itemsCompra), ExcepcionExcesoItems.class,
@@ -88,7 +88,7 @@ public class ServicioCrearItemsCompraTest {
 		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
 
 		ServicioCrearItemsCompra servicioCrearItemsCompra = new ServicioCrearItemsCompra(repositorioItemsCompra,
-				daoParametro, servicioActualizarCompra, daoCompra);
+				daoParametro);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioCrearItemsCompra.ejecutar(itemsCompra), ExcepcionMaximoAnchoItem.class,
@@ -117,7 +117,7 @@ public class ServicioCrearItemsCompraTest {
 		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
 
 		ServicioCrearItemsCompra servicioCrearItemsCompra = new ServicioCrearItemsCompra(repositorioItemsCompra,
-				daoParametro, servicioActualizarCompra, daoCompra);
+				daoParametro);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioCrearItemsCompra.ejecutar(itemsCompra), ExcepcionMaximoLargoItem.class,
@@ -142,7 +142,7 @@ public class ServicioCrearItemsCompraTest {
 		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
 
 		ServicioCrearItemsCompra servicioCrearItemsCompra = new ServicioCrearItemsCompra(repositorioItemsCompra,
-				daoParametro, servicioActualizarCompra, daoCompra);
+				daoParametro);
 
 		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES)).thenReturn(
 				new DtoParametroTestDataBuilder().conValor("100").conEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES).build());
@@ -183,7 +183,7 @@ public class ServicioCrearItemsCompraTest {
 		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
 
 		ServicioCrearItemsCompra servicioCrearItemsCompra = new ServicioCrearItemsCompra(repositorioItemsCompra,
-				daoParametro, servicioActualizarCompra, daoCompra);
+				daoParametro);
 
 		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES)).thenReturn(
 				new DtoParametroTestDataBuilder().conValor("100").conEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES).build());
