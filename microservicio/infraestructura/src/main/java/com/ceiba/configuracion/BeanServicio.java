@@ -1,19 +1,46 @@
 package com.ceiba.configuracion;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.cliente.servicio.ServicioActualizarCliente;
 import com.ceiba.cliente.servicio.ServicioCrearCliente;
 import com.ceiba.cliente.servicio.ServicioEliminarCliente;
+import com.ceiba.compra.puerto.repositorio.RepositorioCompra;
+import com.ceiba.compra.servicio.ServicioActualizarCompra;
+import com.ceiba.compra.servicio.ServicioCrearCompra;
+import com.ceiba.compra.servicio.ServicioEliminarCompra;
+import com.ceiba.parametro.puerto.dao.DaoParametro;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
 import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BeanServicio {
 
+	/*
+	 * 
+	 * SERVICIOS DEL COMPRA
+	 * 
+	 */
+    @Bean
+    public ServicioCrearCompra servicioCrearCompra(RepositorioCompra repositorioCompra, DaoParametro daoParametro) {
+        return new ServicioCrearCompra(repositorioCompra, daoParametro);
+    }
+
+    @Bean
+    public ServicioEliminarCompra servicioEliminarCompra(RepositorioCompra repositorioCompra) {
+        return new ServicioEliminarCompra(repositorioCompra);
+    }
+
+    @Bean
+    public ServicioActualizarCompra servicioActualizarCompra(RepositorioCompra repositorioCompra, 
+    		DaoParametro daoParametro) {
+        return new ServicioActualizarCompra(repositorioCompra,daoParametro);
+    }
+    
     @Bean
     public ServicioCrearUsuario servicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
         return new ServicioCrearUsuario(repositorioUsuario);
