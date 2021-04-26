@@ -3,34 +3,30 @@ package com.ceiba.configuracion;
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.cliente.servicio.ServicioCrearCliente;
 import com.ceiba.cliente.servicio.ServicioEliminarCliente;
-import com.ceiba.compra.puerto.dao.DaoCompra;
-import com.ceiba.compra.puerto.repositorio.RepositorioCompra;
-import com.ceiba.compra.servicio.ServicioActualizarCompra;
-import com.ceiba.compra.servicio.ServicioCrearCompra;
-import com.ceiba.compra.servicio.ServicioEliminarCompra;
-import com.ceiba.itemsCompra.puerto.dao.DaoItemsCompra;
-import com.ceiba.itemsCompra.puerto.repositorio.RepositorioItemsCompra;
-import com.ceiba.itemsCompra.servicio.ServicioActualizarItemsCompra;
-import com.ceiba.itemsCompra.servicio.ServicioCrearItemsCompra;
-import com.ceiba.itemsCompra.servicio.ServicioEliminarItemsCompra;
-import com.ceiba.parametro.puerto.dao.DaoParametro;
 import com.ceiba.cliente.servicio.ServicioActualizarCliente;
+
+import com.ceiba.servicio.puerto.dao.DaoServicio;
+import com.ceiba.servicio.puerto.repositorio.RepositorioServicio;
+import com.ceiba.servicio.servicio.ServicioActualizarServicio;
+import com.ceiba.servicio.servicio.ServicioCrearServicio;
+import com.ceiba.servicio.servicio.ServicioEliminarServicio;
+
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
 import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
+
+import com.ceiba.vehiculo.puerto.repositorio.RepositorioVehiculo;
+import com.ceiba.vehiculo.servicio.ServicioActualizarVehiculo;
+import com.ceiba.vehiculo.servicio.ServicioCrearVehiculo;
+import com.ceiba.vehiculo.servicio.ServicioEliminarVehiculo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BeanServicio {
-	
-	/*
-	 * 
-	 * SERVICIOS DEL USUARIO
-	 * 
-	 */
+
     @Bean
     public ServicioCrearUsuario servicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
         return new ServicioCrearUsuario(repositorioUsuario);
@@ -45,13 +41,7 @@ public class BeanServicio {
     public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
         return new ServicioActualizarUsuario(repositorioUsuario);
     }
-    
-	/*
-	 * 
-	 * SERVICIOS DEL CLIENTE
-	 * 
-	 */
-    
+
     @Bean
     public ServicioCrearCliente servicioCrearCliente(RepositorioCliente repositorioCliente) {
         return new ServicioCrearCliente(repositorioCliente);
@@ -66,55 +56,36 @@ public class BeanServicio {
     public ServicioActualizarCliente servicioActualizarCliente(RepositorioCliente repositorioCliente) {
         return new ServicioActualizarCliente(repositorioCliente);
     }
-    
-	
-	/*
-	 * 
-	 * SERVICIOS DEL COMPRA
-	 * 
-	 */
+
     @Bean
-    public ServicioCrearCompra servicioCrearCompra(RepositorioCompra repositorioCompra, DaoParametro daoParametro, DaoItemsCompra daoItemsCompra) {
-        return new ServicioCrearCompra(repositorioCompra, daoParametro, daoItemsCompra);
+    public ServicioCrearVehiculo servicioCrearVehiculo(RepositorioVehiculo repositorioVehiculo) {
+        return new ServicioCrearVehiculo(repositorioVehiculo);
     }
 
     @Bean
-    public ServicioEliminarCompra servicioEliminarCompra(RepositorioCompra repositorioCompra) {
-        return new ServicioEliminarCompra(repositorioCompra);
+    public ServicioEliminarVehiculo servicioEliminarVehiculo(RepositorioVehiculo repositorioVehiculo) {
+        return new ServicioEliminarVehiculo(repositorioVehiculo);
     }
 
     @Bean
-    public ServicioActualizarCompra servicioActualizarCompra(RepositorioCompra repositorioCompra, 
-    		DaoParametro daoParametro, DaoItemsCompra daoItemsCompra) {
-        return new ServicioActualizarCompra(repositorioCompra,daoParametro);
-    }
-    
-    /*
-	 * 
-	 * SERVICIOS DE ITEMSCOMPRA
-	 * 
-	 */
-    @Bean
-    public ServicioCrearItemsCompra servicioCrearItemsCompra(RepositorioItemsCompra repositorioItemsCompra, DaoParametro daoParametro,
-    		ServicioActualizarCompra servicioActualizarCompra, DaoCompra daoCompra) {
-        return new ServicioCrearItemsCompra(repositorioItemsCompra, daoParametro,servicioActualizarCompra,daoCompra);
+    public ServicioActualizarVehiculo servicioActualizarVehiculo(RepositorioVehiculo repositorioVehiculo) {
+        return new ServicioActualizarVehiculo(repositorioVehiculo);
     }
 
     @Bean
-    public ServicioEliminarItemsCompra servicioEliminarItemsCompra(RepositorioItemsCompra repositorioItemsCompra,ServicioActualizarCompra servicioActualizarCompra,
-    		DaoCompra daoCompra,DaoItemsCompra daoItemsCompra) {
-        return new ServicioEliminarItemsCompra(repositorioItemsCompra, servicioActualizarCompra, daoCompra, daoItemsCompra);
+    public ServicioCrearServicio servicioCrearServicio(RepositorioServicio repositorioServicio) {
+        return new ServicioCrearServicio(repositorioServicio);
     }
 
     @Bean
-    public ServicioActualizarItemsCompra servicioActualizarItemsCompra(RepositorioItemsCompra repositorioItemsCompra ,
-    		DaoParametro daoParametro,ServicioActualizarCompra servicioActualizarCompra, DaoCompra daoCompra) {
-        return new ServicioActualizarItemsCompra(repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
+    public ServicioEliminarServicio servicioEliminarServicio(RepositorioServicio repositorioServicio) {
+        return new ServicioEliminarServicio(repositorioServicio);
     }
-    
 
-
-    
+    @Bean
+    public ServicioActualizarServicio servicioActualizarServicio(RepositorioServicio repositorioServicio, DaoServicio daoServicio) {
+        return new ServicioActualizarServicio(repositorioServicio, daoServicio);
+    }
 	
 
 }
