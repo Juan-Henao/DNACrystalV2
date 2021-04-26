@@ -28,6 +28,48 @@ public class BeanServicio {
 	
 	/*
 	 * 
+	 * SERVICIOS DEL USUARIO
+	 * 
+	 */
+    @Bean
+    public ServicioCrearUsuario servicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
+        return new ServicioCrearUsuario(repositorioUsuario);
+    }
+
+    @Bean
+    public ServicioEliminarUsuario servicioEliminarUsuario(RepositorioUsuario repositorioUsuario) {
+        return new ServicioEliminarUsuario(repositorioUsuario);
+    }
+
+    @Bean
+    public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
+        return new ServicioActualizarUsuario(repositorioUsuario);
+    }
+    
+	/*
+	 * 
+	 * SERVICIOS DEL CLIENTE
+	 * 
+	 */
+    
+    @Bean
+    public ServicioCrearCliente servicioCrearCliente(RepositorioCliente repositorioCliente) {
+        return new ServicioCrearCliente(repositorioCliente);
+    }
+
+    @Bean
+    public ServicioEliminarCliente servicioEliminarCliente(RepositorioCliente repositorioCliente) {
+        return new ServicioEliminarCliente(repositorioCliente);
+    }
+
+    @Bean
+    public ServicioActualizarCliente servicioActualizarCliente(RepositorioCliente repositorioCliente) {
+        return new ServicioActualizarCliente(repositorioCliente);
+    }
+    
+	
+	/*
+	 * 
 	 * SERVICIOS DEL COMPRA
 	 * 
 	 */
@@ -70,47 +112,7 @@ public class BeanServicio {
         return new ServicioActualizarItemsCompra(repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
     }
     
-	/*
-	 * 
-	 * SERVICIOS DEL USUARIO
-	 * 
-	 */
 
-    @Bean
-    public ServicioCrearUsuario servicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioCrearUsuario(repositorioUsuario);
-    }
-
-    @Bean
-    public ServicioEliminarUsuario servicioEliminarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioEliminarUsuario(repositorioUsuario);
-    }
-
-    @Bean
-    public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioActualizarUsuario(repositorioUsuario);
-    }
-
-	/*
-	 * 
-	 * SERVICIOS DEL CLIENTE
-	 * 
-	 */
-    
-    @Bean
-    public ServicioCrearCliente servicioCrearCliente(RepositorioCliente repositorioCliente) {
-        return new ServicioCrearCliente(repositorioCliente);
-    }
-
-    @Bean
-    public ServicioEliminarCliente servicioEliminarCliente(RepositorioCliente repositorioCliente) {
-        return new ServicioEliminarCliente(repositorioCliente);
-    }
-
-    @Bean
-    public ServicioActualizarCliente servicioActualizarCliente(RepositorioCliente repositorioCliente) {
-        return new ServicioActualizarCliente(repositorioCliente);
-    }
 
     
 	
