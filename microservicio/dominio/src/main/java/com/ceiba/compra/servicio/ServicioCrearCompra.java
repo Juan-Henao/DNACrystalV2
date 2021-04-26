@@ -27,12 +27,10 @@ public class ServicioCrearCompra {
 	private static final int SUNDAY = 7;
 	private final RepositorioCompra repositorioCompra;
 	private final DaoParametro daoParametro;
-	private final DaoItemsCompra daoItemsCompra;
 
-	public ServicioCrearCompra(RepositorioCompra repositorioCompra, DaoParametro daoParametro, DaoItemsCompra daoItemsCompra) {
+	public ServicioCrearCompra(RepositorioCompra repositorioCompra, DaoParametro daoParametro) {
 		this.repositorioCompra = repositorioCompra;
 		this.daoParametro = daoParametro;
-		this.daoItemsCompra = daoItemsCompra;
 	}
 
 	public Long ejecutar(Compra compra) {
@@ -41,7 +39,6 @@ public class ServicioCrearCompra {
 		validarDiaFestivo(compra, daoParametro.listarPorEnum(EnumParametro.FESTIVOS));
 
 		validarHorarioHabil(compra);
-		calcularValorCompra(compra , daoItemsCompra.obtenerPorCompra(compra.getId()));
 		if (verificarFinDeSemana(compra)) {
 			asignarRecargoFinDeSemana(compra);
 		}
@@ -49,16 +46,6 @@ public class ServicioCrearCompra {
 		return this.repositorioCompra.crear(compra);
 	}
 
-	private void calcularValorCompra(Compra compra, List<DtoItemsCompra> ListDtoItemsCompra) {
-		
-		Double valor = BigDecimal.ZERO.doubleValue();
-		for (DtoItemsCompra dtoItemsCompra : ListDtoItemsCompra) {
-			
-			valor += dtoItemsCompra.getValor();
-
-		}
-		compra.setTotal(valor);		
-	}
 
 	private void validarExistenciaPrevia(Compra compra) {
 		boolean existe = this.repositorioCompra.existe(compra.getFechaCompra(), compra.getIdCliente());

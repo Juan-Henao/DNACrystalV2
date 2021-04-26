@@ -43,7 +43,7 @@ public class ServicioEliminarItemsCompraTest {
 		
 		
 		ServicioEliminarItemsCompra servicioEliminarItemsCompra = new ServicioEliminarItemsCompra(
-				repositorioItemsCompra, servicioActualizarCompra, daoCompra, daoItemsCompra);
+				repositorioItemsCompra);
 		
 		servicioEliminarItemsCompra.ejecutar(itemsCompra.getId());
 
