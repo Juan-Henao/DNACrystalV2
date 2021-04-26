@@ -23,13 +23,13 @@ public class RepositorioCompraMysql implements RepositorioCompra {
 	private static String sqlActualizarCompra;
 
 	@SqlStatement(namespace = "compra", value = "eliminar")
-	private static String sqlEliminarCompra;
+	private static String sqlEliminar;
 
 	@SqlStatement(namespace = "compra", value = "existe")
-	private static String sqlExisteCompra;
+	private static String sqlExiste;
 
 	@SqlStatement(namespace = "compra", value = "existeExcluyendoId")
-	private static String sqlExisteExcluyendoId;
+	private static String sqlExisteExcluyendoIdCompra;
 
 	@SqlStatement(namespace = "compra", value = "contarComprasPorDia")
 	private static String sqlcontarComprasPorDia;
@@ -55,7 +55,7 @@ public class RepositorioCompraMysql implements RepositorioCompra {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarCompra, paramSource);		
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);		
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class RepositorioCompraMysql implements RepositorioCompra {
         paramSource.addValue("fechaCompra", fechaCompra);
         paramSource.addValue("idCliente", idCliente);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteCompra,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class RepositorioCompraMysql implements RepositorioCompra {
         paramSource.addValue("fechaCompra", fechaCompra);
         paramSource.addValue("idCliente", idCliente);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoIdCompra,paramSource, Boolean.class);
 	}
 	
 

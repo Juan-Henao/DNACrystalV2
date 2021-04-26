@@ -40,7 +40,7 @@ public class ServicioActualizarItemsCompraTest {
 		
 		
 		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro);
+				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionDuplicidad.class,
@@ -69,7 +69,7 @@ public class ServicioActualizarItemsCompraTest {
 		
 		
 		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro);
+				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionExcesoItems.class,
@@ -97,7 +97,7 @@ public class ServicioActualizarItemsCompraTest {
 		
 		
 		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro);
+				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionMaximoAnchoItem.class,
@@ -125,7 +125,7 @@ public class ServicioActualizarItemsCompraTest {
 		
 		
 		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro);
+				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionMaximoLargoItem.class,
@@ -148,7 +148,7 @@ public class ServicioActualizarItemsCompraTest {
 		
 		
 		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro);
+				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
 		
 		Mockito.when(daoCompra.obtener(1L))
 		.thenReturn(new DtoCompraTestDataBuilder().build());
@@ -191,7 +191,7 @@ public class ServicioActualizarItemsCompraTest {
 		.thenReturn(new DtoCompraTestDataBuilder().build());
 		
 		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro);
+				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
 		
 		
 		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES))
