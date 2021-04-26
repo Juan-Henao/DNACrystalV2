@@ -12,7 +12,7 @@ public class DtoItemsCompraTestDataBuilder {
 
 	private Long id;
 	private Long cantidad;
-	private Long idCompra;
+	private DtoCompra idCompra;
 	private Double valor;
 	private Double ancho;
 	private Double largo;
@@ -21,7 +21,8 @@ public class DtoItemsCompraTestDataBuilder {
 	public DtoItemsCompraTestDataBuilder() {
 		id = 1L;
 		cantidad = 2L;
-		idCompra = 1L;
+		idCompra = new DtoCompra(1L, new DtoCliente(1L, "", "", "", "", LocalDateTime.now()), 2D, LocalDateTime.now(),
+				LocalDateTime.now(), "EN_PROGRESO");
 		valor = 2D;
 		ancho = 1D;
 		largo = 1D;

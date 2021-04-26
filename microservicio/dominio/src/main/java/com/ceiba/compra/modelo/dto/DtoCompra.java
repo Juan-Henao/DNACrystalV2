@@ -14,7 +14,7 @@ import lombok.Setter;
 public class DtoCompra {
 	
     private Long id;
-	private Long idCliente;
+	private DtoCliente idCliente;
     private Double total;
 	private LocalDateTime fechaCompra;
 	private LocalDateTime fechaEntrega;

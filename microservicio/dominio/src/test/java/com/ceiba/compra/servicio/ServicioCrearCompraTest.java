@@ -17,6 +17,9 @@ import com.ceiba.compra.servicio.testdatabuilder.CompraTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionDiaFestivo;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionHorarioLaboral;
+import com.ceiba.itemsCompra.modelo.dto.DtoItemsCompra;
+import com.ceiba.itemsCompra.puerto.dao.DaoItemsCompra;
+import com.ceiba.itemscompra.servicio.testdatabuilder.DtoItemsCompraTestDataBuilder;
 import com.ceiba.parametro.modelo.dto.DtoParametro;
 import com.ceiba.parametro.puerto.dao.DaoParametro;
 import com.ceiba.parametro.testdatabuilder.DtoParametroTestDataBuilder;
@@ -34,89 +37,93 @@ public class ServicioCrearCompraTest {
 
 		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(true);
 		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
+		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
 
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra);
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionDuplicidad.class,
 				"la Compra ya existe en el sistema");
 	}
 
-//	@SuppressWarnings("serial")
-//	@Test
-//	public void verificarDiaFestivoTest() {
-//		// arrange yyyy-MM-dd
-//
-//		Compra compra = new CompraTestDataBuilder().conFechaCompra(LocalDateTime.now()).build();
-//		RepositorioCompra repositorioCompra = Mockito.mock(RepositorioCompra.class);
-//
-//		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
-//		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
-//
-//		Mockito.when(daoParametro.listarPorEnum(EnumParametro.FESTIVOS)).thenReturn(new ArrayList<DtoParametro>() {
-//			{
-//				add(new DtoParametroTestDataBuilder()
-//						.conValor(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString())
-//						.conEnum(EnumParametro.FESTIVOS).build());
-//			}
-//		});
-//
-//
-//		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra);
-//		// act - assert
-//		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionDiaFestivo.class,
-//				"la Compra no se puede realizar ya que es Festivo");
-//	}
+	@SuppressWarnings("serial")
+	@Test
+	public void verificarDiaFestivoTest() {
+		// arrange yyyy-MM-dd
 
-//	@Test
-//	public void validarHorarioHabilAntesEntradaTest() {
-//		// arrange
-//
-//		LocalDateTime dummyDate = LocalDateTime.of(2021, Month.APRIL, 21, 15, 10, 30);
-//
-//		Compra compra = new CompraTestDataBuilder().conFechaCompra(dummyDate).build();
-//		RepositorioCompra repositorioCompra = Mockito.mock(RepositorioCompra.class);
-//
-//		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
-//		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
-//
-//		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.HORA_ENTRADA)).thenReturn(
-//				new DtoParametroTestDataBuilder().conValor("19").conEnum(EnumParametro.HORA_ENTRADA).build());
-//
-//		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.HORA_SALIDA)).thenReturn(
-//				new DtoParametroTestDataBuilder().conValor("20").conEnum(EnumParametro.HORA_SALIDA).build());
-//
-//
-//		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra);
-//		// act - assert
-//		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionHorarioLaboral.class,
-//				"El horario de la compra no es valido");
-//	}
+		Compra compra = new CompraTestDataBuilder().conFechaCompra(LocalDateTime.now()).build();
+		RepositorioCompra repositorioCompra = Mockito.mock(RepositorioCompra.class);
 
-//	@Test
-//	public void validarHorarioHabilDespuesSalidaTest() {
-//		// arrange
-//
-//		LocalDateTime dummyDate = LocalDateTime.of(2021, Month.APRIL, 21, 22, 10, 30);
-//
-//		Compra compra = new CompraTestDataBuilder().conFechaCompra(dummyDate).build();
-//		RepositorioCompra repositorioCompra = Mockito.mock(RepositorioCompra.class);
-//
-//		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
-//		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
-//
-//		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.HORA_ENTRADA)).thenReturn(
-//				new DtoParametroTestDataBuilder().conValor("19").conEnum(EnumParametro.HORA_ENTRADA).build());
-//
-//		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.HORA_SALIDA)).thenReturn(
-//				new DtoParametroTestDataBuilder().conValor("20").conEnum(EnumParametro.HORA_SALIDA).build());
-//
-//
-//		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra);
-//		// act - assert
-//		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionHorarioLaboral.class,
-//				"El horario de la compra no es valido");
-//	}
+		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
+		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
+
+		Mockito.when(daoParametro.listarPorEnum(EnumParametro.FESTIVOS)).thenReturn(new ArrayList<DtoParametro>() {
+			{
+				add(new DtoParametroTestDataBuilder()
+						.conValor(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString())
+						.conEnum(EnumParametro.FESTIVOS).build());
+			}
+		});
+
+		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
+
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
+		// act - assert
+		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionDiaFestivo.class,
+				"la Compra no se puede realizar ya que es Festivo");
+	}
+
+	@Test
+	public void validarHorarioHabilAntesEntradaTest() {
+		// arrange
+
+		LocalDateTime dummyDate = LocalDateTime.of(2021, Month.APRIL, 21, 15, 10, 30);
+
+		Compra compra = new CompraTestDataBuilder().conFechaCompra(dummyDate).build();
+		RepositorioCompra repositorioCompra = Mockito.mock(RepositorioCompra.class);
+
+		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
+		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
+
+		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.HORA_ENTRADA)).thenReturn(
+				new DtoParametroTestDataBuilder().conValor("19").conEnum(EnumParametro.HORA_ENTRADA).build());
+
+		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.HORA_SALIDA)).thenReturn(
+				new DtoParametroTestDataBuilder().conValor("20").conEnum(EnumParametro.HORA_SALIDA).build());
+
+		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
+
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
+		// act - assert
+		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionHorarioLaboral.class,
+				"El horario de la compra no es valido");
+	}
+
+	@Test
+	public void validarHorarioHabilDespuesSalidaTest() {
+		// arrange
+
+		LocalDateTime dummyDate = LocalDateTime.of(2021, Month.APRIL, 21, 22, 10, 30);
+
+		Compra compra = new CompraTestDataBuilder().conFechaCompra(dummyDate).build();
+		RepositorioCompra repositorioCompra = Mockito.mock(RepositorioCompra.class);
+
+		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
+		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
+
+		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.HORA_ENTRADA)).thenReturn(
+				new DtoParametroTestDataBuilder().conValor("19").conEnum(EnumParametro.HORA_ENTRADA).build());
+
+		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.HORA_SALIDA)).thenReturn(
+				new DtoParametroTestDataBuilder().conValor("20").conEnum(EnumParametro.HORA_SALIDA).build());
+
+		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
+
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
+		// act - assert
+		BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionHorarioLaboral.class,
+				"El horario de la compra no es valido");
+	}
 	
 	@SuppressWarnings("serial")
 	@Test
@@ -131,7 +138,9 @@ public class ServicioCrearCompraTest {
 
 		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
 
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra);
+		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
+
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
 		
 		Mockito.when(daoParametro.listarPorEnum(EnumParametro.FESTIVOS)).thenReturn(new ArrayList<DtoParametro>() {
 			{
@@ -175,9 +184,16 @@ public class ServicioCrearCompraTest {
 
 		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
 		
+		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
 
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra);
-
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
+		Mockito.when(daoItemsCompra.obtenerPorCompra(1L)).thenReturn(new ArrayList<DtoItemsCompra>() {
+			{
+				add(new DtoItemsCompraTestDataBuilder()
+						.conValor(5000D)
+						.build());
+			}
+		});
 
 
 		Mockito.when(daoParametro.listarPorEnum(EnumParametro.FESTIVOS)).thenReturn(new ArrayList<DtoParametro>() {
@@ -222,8 +238,10 @@ public class ServicioCrearCompraTest {
 
 		Mockito.when(repositorioCompra.existe(Mockito.any(), Mockito.anyLong())).thenReturn(false);
 
+		DaoItemsCompra daoItemsCompra = Mockito.mock(DaoItemsCompra.class);
 
-		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra);
+		ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, daoParametro,daoItemsCompra);
+		Mockito.when(daoItemsCompra.obtener(1L)).thenReturn(new DtoItemsCompraTestDataBuilder().build());
 
 		Mockito.when(daoParametro.listarPorEnum(EnumParametro.FESTIVOS)).thenReturn(new ArrayList<DtoParametro>() {
 			{

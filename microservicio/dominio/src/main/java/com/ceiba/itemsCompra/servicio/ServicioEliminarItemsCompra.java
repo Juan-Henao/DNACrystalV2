@@ -12,16 +12,30 @@ import com.ceiba.itemsCompra.puerto.repositorio.RepositorioItemsCompra;
 public class ServicioEliminarItemsCompra {
 
 	private final RepositorioItemsCompra repositorioItemsCompra;
+	private final ServicioActualizarCompra servicioActualizarCompra;
+	private final DaoCompra daoCompra;
+	private final DaoItemsCompra daoItemsCompra;
 
-
-	public ServicioEliminarItemsCompra(RepositorioItemsCompra repositorioItemsCompra) {
+	public ServicioEliminarItemsCompra(RepositorioItemsCompra repositorioItemsCompra,
+			ServicioActualizarCompra servicioActualizarCompra, DaoCompra daoCompra,DaoItemsCompra daoItemsCompra) {
 		this.repositorioItemsCompra = repositorioItemsCompra;
-		
+		this.servicioActualizarCompra = servicioActualizarCompra;
+		this.daoCompra = daoCompra;
+		this.daoItemsCompra = daoItemsCompra;
 	}
+
 	public void ejecutar(Long id) {
+		cambiarValorCompra(daoItemsCompra.obtener(id));
 
 		this.repositorioItemsCompra.eliminar(id);
 	}
 	
-	
+	private void cambiarValorCompra(DtoItemsCompra dtoItemsCompra) {
+		DtoCompra dtoCompra = daoCompra.obtener(dtoItemsCompra.getIdCompra().getId());
+		dtoCompra.setTotal(dtoCompra.getTotal()+dtoItemsCompra.getValor());
+		
+		servicioActualizarCompra.ejecutar(
+				new Compra(dtoCompra.getId(),dtoCompra.getIdCliente().getId(),dtoCompra.getTotal(),dtoCompra.getFechaCompra(),dtoCompra.getFechaEntrega(),dtoCompra.getEstadoCompra() ));
+				
+	}
 }

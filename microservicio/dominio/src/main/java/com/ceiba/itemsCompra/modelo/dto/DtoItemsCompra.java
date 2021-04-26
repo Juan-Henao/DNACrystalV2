@@ -13,7 +13,7 @@ public class DtoItemsCompra {
 	
     private Long id;
     private Long cantidad;
-	private Long idCompra;
+	private DtoCompra idCompra;
 	private Double valor;
     private Double ancho;
     private Double largo;
