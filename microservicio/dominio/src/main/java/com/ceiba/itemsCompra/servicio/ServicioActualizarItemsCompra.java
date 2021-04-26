@@ -54,7 +54,7 @@ public class ServicioActualizarItemsCompra {
 		dtoCompra.setTotal(dtoCompra.getTotal()+itemsCompra.getValor());
 		
 		servicioActualizarCompra.ejecutar(
-				new Compra(dtoCompra.getId(),dtoCompra.getIdCliente().getId(),dtoCompra.getTotal(),dtoCompra.getFechaCompra(),dtoCompra.getFechaEntrega(),dtoCompra.getEstadoCompra() ));
+				new Compra(dtoCompra.getId(),dtoCompra.getIdCliente(),dtoCompra.getTotal(),dtoCompra.getFechaCompra(),dtoCompra.getFechaEntrega(),dtoCompra.getEstadoCompra() ));
 				
 	}
 	
