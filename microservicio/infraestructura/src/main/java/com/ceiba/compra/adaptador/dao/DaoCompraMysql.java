@@ -20,10 +20,10 @@ public class DaoCompraMysql implements DaoCompra {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="compra", value="listar")
-    private static String sqlListar;
+    private static String sqlListarCompra;
 
     @SqlStatement(namespace="compra", value="obtener")
-    private static String sqlObtener;
+    private static String sqlObtenerCompra;
       
     
     public DaoCompraMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
@@ -33,7 +33,7 @@ public class DaoCompraMysql implements DaoCompra {
 
 	@Override
 	public List<DtoCompra> listar() {
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoCompra());
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarCompra, new MapeoCompra());
 	}
 
 
@@ -41,7 +41,7 @@ public class DaoCompraMysql implements DaoCompra {
 	public DtoCompra obtener(Long id) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
-		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtener, paramSource, new MapeoCompra()).iterator().next();
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerCompra, paramSource, new MapeoCompra()).iterator().next();
 	}
 
 
