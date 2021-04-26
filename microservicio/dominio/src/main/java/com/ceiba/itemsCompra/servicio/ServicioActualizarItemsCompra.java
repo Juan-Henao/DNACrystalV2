@@ -24,39 +24,21 @@ public class ServicioActualizarItemsCompra {
 	private static final String SOBREPASO_LARGO_ITEM = "Exceso en el largo del items de compra";
 
 	private final RepositorioItemsCompra repositorioItemsCompra;
-	private final DaoParametro daoParametro;
-	private final ServicioActualizarCompra servicioActualizarCompra;
-	private final DaoCompra daoCompra;
+
 	
-	public ServicioActualizarItemsCompra(RepositorioItemsCompra repositorioItemsCompra, DaoParametro daoParametro,
-			ServicioActualizarCompra servicioActualizarCompra, DaoCompra daoCompra) {
+	public ServicioActualizarItemsCompra(RepositorioItemsCompra repositorioItemsCompra) {
 		this.repositorioItemsCompra = repositorioItemsCompra;
-		this.daoParametro = daoParametro;
-		this.servicioActualizarCompra = servicioActualizarCompra;
-		this.daoCompra = daoCompra;
+
 	}
 
 	public void ejecutar(ItemsCompra itemsCompra) {
+
 		validarExistenciaPrevia(itemsCompra);
-		validarCantidadSolicitada(itemsCompra);
-		validarAnchoItemsCompra(itemsCompra);
-		validarLargoItemsCompra(itemsCompra);
-		if (itemsCompra.getCantidad() > Long.parseLong(daoParametro.obtenerPorEnum(EnumParametro.ITEMS_MINIMOS_DESCUENTO).getValor())) {
-			aplicarDescuento(itemsCompra);
-		}
-		cambiarValorCompra(itemsCompra);
 
 		this.repositorioItemsCompra.actualizar(itemsCompra);
 	}
 
-	private void cambiarValorCompra(ItemsCompra itemsCompra) {
-		DtoCompra dtoCompra = daoCompra.obtener(itemsCompra.getIdCompra());
-		dtoCompra.setTotal(dtoCompra.getTotal()+itemsCompra.getValor());
-		
-		servicioActualizarCompra.ejecutar(
-				new Compra(dtoCompra.getId(),dtoCompra.getIdCliente().getId(),dtoCompra.getTotal(),dtoCompra.getFechaCompra(),dtoCompra.getFechaEntrega(),dtoCompra.getEstadoCompra() ));
-				
-	}
+	
 	
 	private void validarExistenciaPrevia(ItemsCompra itemsCompra) {
 		boolean existe = this.repositorioItemsCompra.existeExcluyendoId(itemsCompra.getId(),
@@ -66,41 +48,6 @@ public class ServicioActualizarItemsCompra {
 		}
 	}
 
-	private void validarCantidadSolicitada(ItemsCompra itemsCompra) {
-
-		if (itemsCompra.getCantidad()
-				.compareTo(Long.parseLong(
-						daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES).getValor())) > BigDecimal.ZERO
-								.intValue()) {
-			throw new ExcepcionExcesoItems(EXCESO_ITEMS_COMPRA);
-		}
-	}
-
-	private void validarAnchoItemsCompra(ItemsCompra itemsCompra) {
-		if (itemsCompra.getAncho()
-				.compareTo(Double.parseDouble(
-						daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_ANCHO_ITEM).getValor())) > BigDecimal.ZERO
-								.intValue()) {
-			throw new ExcepcionMaximoAnchoItem(SOBREPASO_ANCHO_ITEM);
-		}
-	}
-
-	private void validarLargoItemsCompra(ItemsCompra itemsCompra) {
-		if (itemsCompra.getLargo()
-				.compareTo(Double.parseDouble(
-						daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_LARGO_ITEM).getValor())) > BigDecimal.ZERO
-								.intValue()) {
-			throw new ExcepcionMaximoLargoItem(SOBREPASO_LARGO_ITEM);
-		}
-	}
-
-	private void aplicarDescuento(ItemsCompra itemsCompra) {
-		Double valorActual = itemsCompra.getValor();
-		Double valorDescuento = valorActual
-				* Double.parseDouble(daoParametro.obtenerPorEnum(EnumParametro.ITEMS_MINIMOS_DESCUENTO).getValor());
-		Double valorFinal = valorActual - valorDescuento;
-		itemsCompra.setValor(valorFinal);
-
-	}
+	
 
 }

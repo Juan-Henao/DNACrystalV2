@@ -22,21 +22,17 @@ public class ServicioCrearCompra {
 	private static final int SATURDAY = 6;
 	private static final int SUNDAY = 7;
 	private final RepositorioCompra repositorioCompra;
-	private final DaoParametro daoParametro;
 
-	public ServicioCrearCompra(RepositorioCompra repositorioCompra, DaoParametro daoParametro) {
+
+	public ServicioCrearCompra(RepositorioCompra repositorioCompra) {
 		this.repositorioCompra = repositorioCompra;
-		this.daoParametro = daoParametro;
 	}
 
 	public Long ejecutar(Compra compra) {
 		validarExistenciaPrevia(compra);
 
-		validarDiaFestivo(compra, daoParametro.listarPorEnum(EnumParametro.FESTIVOS));
 
-		validarHorarioHabil(compra);
 		if (verificarFinDeSemana(compra)) {
-			asignarRecargoFinDeSemana(compra);
 		}
 		asignarFechaEntrega(compra);
 		return this.repositorioCompra.crear(compra);
@@ -56,41 +52,11 @@ public class ServicioCrearCompra {
 
 	}
 
-	private void asignarRecargoFinDeSemana(Compra compra) {
-
-		compra.setTotal(compra.getTotal() + (compra.getTotal()
-				* Double.parseDouble(daoParametro.obtenerPorEnum(EnumParametro.RECARGO_FIN_SEMANA).getValor())));
-
-	}
-
-	private void validarDiaFestivo(Compra compra, List<DtoParametro> ListDtoParametro) {
-		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-		for (DtoParametro dtoParametro : ListDtoParametro) {
-			if (compra.getFechaCompra().toLocalDate().isEqual(LocalDate.parse(dtoParametro.getValor(), formatter))) {
-				throw new ExcepcionDiaFestivo(LA_COMPRA_NO_SE_REALIZA_FESTIVO);
-			}
-		}
-	}
-
-	private void validarHorarioHabil(Compra compra) {
-
-		if (compra.getFechaCompra().getHour() < Integer
-				.parseInt(daoParametro.obtenerPorEnum(EnumParametro.HORA_ENTRADA).getValor())
-				|| compra.getFechaCompra().getHour() > Integer
-						.parseInt(daoParametro.obtenerPorEnum(EnumParametro.HORA_SALIDA).getValor())) {
-			throw new ExcepcionHorarioLaboral(EL_HORARIO_DE_LA_COMPRA_NO_VALIDO);
-		}
-	}
+	
 
 	private void asignarFechaEntrega(Compra compra) {
-		int cantidadDias = calcularDiaFechaEntrega();
+		int cantidadDias = 5;
 		compra.setFechaEntrega(compra.getFechaCompra().plusDays(cantidadDias));
 	}
 
-	private int calcularDiaFechaEntrega() {
-		return ThreadLocalRandom.current().nextInt(
-				Integer.parseInt(daoParametro.obtenerPorEnum(EnumParametro.DIAS_MINIMOS_FECHA_COMPRA).getValor()),
-				Integer.parseInt(daoParametro.obtenerPorEnum(EnumParametro.DIAS_MAXIMOS_FECHA_COMPRA).getValor()));
-	}
 }

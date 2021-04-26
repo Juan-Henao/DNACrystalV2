@@ -70,8 +70,8 @@ public class BeanServicio {
 	 * 
 	 */
     @Bean
-    public ServicioCrearCompra servicioCrearCompra(RepositorioCompra repositorioCompra, DaoParametro daoParametro) {
-        return new ServicioCrearCompra(repositorioCompra, daoParametro);
+    public ServicioCrearCompra servicioCrearCompra(RepositorioCompra repositorioCompra) {
+        return new ServicioCrearCompra(repositorioCompra);
     }
 
     @Bean
@@ -92,21 +92,19 @@ public class BeanServicio {
 	 * 
 	 */
     @Bean
-    public ServicioCrearItemsCompra servicioCrearItemsCompra(RepositorioItemsCompra repositorioItemsCompra, DaoParametro daoParametro,
-    		ServicioActualizarCompra servicioActualizarCompra, DaoCompra daoCompra) {
-        return new ServicioCrearItemsCompra(repositorioItemsCompra, daoParametro,servicioActualizarCompra,daoCompra);
+    public ServicioCrearItemsCompra servicioCrearItemsCompra(RepositorioItemsCompra repositorioItemsCompra) {
+        return new ServicioCrearItemsCompra(repositorioItemsCompra);
     }
 
     @Bean
-    public ServicioEliminarItemsCompra servicioEliminarItemsCompra(RepositorioItemsCompra repositorioItemsCompra,ServicioActualizarCompra servicioActualizarCompra,
-    		DaoCompra daoCompra,DaoItemsCompra daoItemsCompra) {
-        return new ServicioEliminarItemsCompra(repositorioItemsCompra, servicioActualizarCompra, daoCompra, daoItemsCompra);
+    public ServicioEliminarItemsCompra servicioEliminarItemsCompra(RepositorioItemsCompra repositorioItemsCompra) {
+        return new ServicioEliminarItemsCompra(repositorioItemsCompra);
     }
 
     @Bean
-    public ServicioActualizarItemsCompra servicioActualizarItemsCompra(RepositorioItemsCompra repositorioItemsCompra ,
-    		DaoParametro daoParametro,ServicioActualizarCompra servicioActualizarCompra, DaoCompra daoCompra) {
-        return new ServicioActualizarItemsCompra(repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
+    public ServicioActualizarItemsCompra servicioActualizarItemsCompra(RepositorioItemsCompra repositorioItemsCompra 
+    		) {
+        return new ServicioActualizarItemsCompra(repositorioItemsCompra);
     }
 	
 

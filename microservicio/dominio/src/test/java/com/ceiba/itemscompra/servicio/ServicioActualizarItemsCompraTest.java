@@ -40,7 +40,7 @@ public class ServicioActualizarItemsCompraTest {
 		
 		
 		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
+				repositorioItemsCompra);
 
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionDuplicidad.class,
@@ -48,89 +48,89 @@ public class ServicioActualizarItemsCompraTest {
 	}
 	
 
-	@Test
-	public void validarCantidadSolicitadaTest() {
-		// arrange
+//	@Test
+//	public void validarCantidadSolicitadaTest() {
+//		// arrange
+//
+//		ItemsCompra itemsCompra = new ItemsTestDataBuilder().conCantidad(15L).build();
+//
+//		RepositorioItemsCompra repositorioItemsCompra = Mockito.mock(RepositorioItemsCompra.class);
+//
+//		Mockito.when(repositorioItemsCompra.existeExcluyendoId(Mockito.anyLong(), Mockito.any(), Mockito.anyLong()))
+//		.thenReturn(false);
+//		
+//		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
+//
+//		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES))
+//				.thenReturn(new DtoParametroTestDataBuilder().conValor("10").conEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES).build());
+//
+//		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
+//		DaoCompra daoCompra =  Mockito.mock(DaoCompra.class);
+//		
+//		
+//		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
+//				repositorioItemsCompra);
+//
+//		// act - assert
+//		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionExcesoItems.class,
+//				"Exceso en la cantidad de los items de compra");
+//	}
 
-		ItemsCompra itemsCompra = new ItemsTestDataBuilder().conCantidad(15L).build();
+//	@Test
+//	public void validarAnchoItemsCompraTest() {
+//		// arrange
+//
+//		ItemsCompra itemsCompra = new ItemsTestDataBuilder().conAncho(8D).build();
+//
+//		RepositorioItemsCompra repositorioItemsCompra = Mockito.mock(RepositorioItemsCompra.class);
+//
+//		Mockito.when(repositorioItemsCompra.existeExcluyendoId(Mockito.anyLong(), Mockito.any(), Mockito.anyLong()))
+//		.thenReturn(false);
+//		
+//		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
+//
+//		Mockito.when(daoParametro.obtenerPorEnum(Mockito.any()))
+//				.thenReturn(new DtoParametroTestDataBuilder().conValor("5").conEnum(EnumParametro.MAXIMO_ANCHO_ITEM).build());
+//
+//		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
+//		DaoCompra daoCompra =  Mockito.mock(DaoCompra.class);
+//		
+//		
+//		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
+//				repositorioItemsCompra);
+//
+//		// act - assert
+//		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionMaximoAnchoItem.class,
+//				"Exceso en el ancho del items de compra");
+//	}
 
-		RepositorioItemsCompra repositorioItemsCompra = Mockito.mock(RepositorioItemsCompra.class);
-
-		Mockito.when(repositorioItemsCompra.existeExcluyendoId(Mockito.anyLong(), Mockito.any(), Mockito.anyLong()))
-		.thenReturn(false);
-		
-		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
-
-		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES))
-				.thenReturn(new DtoParametroTestDataBuilder().conValor("10").conEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES).build());
-
-		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
-		DaoCompra daoCompra =  Mockito.mock(DaoCompra.class);
-		
-		
-		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
-
-		// act - assert
-		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionExcesoItems.class,
-				"Exceso en la cantidad de los items de compra");
-	}
-
-	@Test
-	public void validarAnchoItemsCompraTest() {
-		// arrange
-
-		ItemsCompra itemsCompra = new ItemsTestDataBuilder().conAncho(8D).build();
-
-		RepositorioItemsCompra repositorioItemsCompra = Mockito.mock(RepositorioItemsCompra.class);
-
-		Mockito.when(repositorioItemsCompra.existeExcluyendoId(Mockito.anyLong(), Mockito.any(), Mockito.anyLong()))
-		.thenReturn(false);
-		
-		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
-
-		Mockito.when(daoParametro.obtenerPorEnum(Mockito.any()))
-				.thenReturn(new DtoParametroTestDataBuilder().conValor("5").conEnum(EnumParametro.MAXIMO_ANCHO_ITEM).build());
-
-		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
-		DaoCompra daoCompra =  Mockito.mock(DaoCompra.class);
-		
-		
-		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
-
-		// act - assert
-		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionMaximoAnchoItem.class,
-				"Exceso en el ancho del items de compra");
-	}
-
-	@Test
-	public void validarLargoItemsCompraTest() {
-		// arrange
-
-		ItemsCompra itemsCompra = new ItemsTestDataBuilder().conLargo(8D).build();
-
-		RepositorioItemsCompra repositorioItemsCompra = Mockito.mock(RepositorioItemsCompra.class);
-
-		Mockito.when(repositorioItemsCompra.existeExcluyendoId(Mockito.anyLong(), Mockito.any(), Mockito.anyLong()))
-		.thenReturn(false);
-		
-		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
-
-		Mockito.when(daoParametro.obtenerPorEnum(Mockito.any()))
-		.thenReturn(new DtoParametroTestDataBuilder().conValor("5").conEnum(EnumParametro.MAXIMO_LARGO_ITEM).build());
-
-		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
-		DaoCompra daoCompra =  Mockito.mock(DaoCompra.class);
-		
-		
-		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
-
-		// act - assert
-		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionMaximoLargoItem.class,
-				"Exceso en el largo del items de compra");
-	}
+//	@Test
+//	public void validarLargoItemsCompraTest() {
+//		// arrange
+//
+//		ItemsCompra itemsCompra = new ItemsTestDataBuilder().conLargo(8D).build();
+//
+//		RepositorioItemsCompra repositorioItemsCompra = Mockito.mock(RepositorioItemsCompra.class);
+//
+//		Mockito.when(repositorioItemsCompra.existeExcluyendoId(Mockito.anyLong(), Mockito.any(), Mockito.anyLong()))
+//		.thenReturn(false);
+//		
+//		DaoParametro daoParametro = Mockito.mock(DaoParametro.class);
+//
+//		Mockito.when(daoParametro.obtenerPorEnum(Mockito.any()))
+//		.thenReturn(new DtoParametroTestDataBuilder().conValor("5").conEnum(EnumParametro.MAXIMO_LARGO_ITEM).build());
+//
+//		ServicioActualizarCompra servicioActualizarCompra = Mockito.mock(ServicioActualizarCompra.class);
+//		DaoCompra daoCompra =  Mockito.mock(DaoCompra.class);
+//		
+//		
+//		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
+//				repositorioItemsCompra);
+//
+//		// act - assert
+//		BasePrueba.assertThrows(() -> servicioActualizarItemsCompra.ejecutar(itemsCompra), ExcepcionMaximoLargoItem.class,
+//				"Exceso en el largo del items de compra");
+//	}
 	
 	@Test
 	public void ejecutarTodoValido() {
@@ -148,7 +148,7 @@ public class ServicioActualizarItemsCompraTest {
 		
 		
 		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
+				repositorioItemsCompra);
 		
 		Mockito.when(daoCompra.obtener(1L))
 		.thenReturn(new DtoCompraTestDataBuilder().build());
@@ -191,7 +191,7 @@ public class ServicioActualizarItemsCompraTest {
 		.thenReturn(new DtoCompraTestDataBuilder().build());
 		
 		ServicioActualizarItemsCompra servicioActualizarItemsCompra = new ServicioActualizarItemsCompra(
-				repositorioItemsCompra, daoParametro, servicioActualizarCompra, daoCompra);
+				repositorioItemsCompra);
 		
 		
 		Mockito.when(daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES))
