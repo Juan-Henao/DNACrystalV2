@@ -4,18 +4,18 @@ jasypt:
       algorithm: PBEWithMD5AndDES
 
 server:
-   port: 8082
+   port: 8083
    servlet:
-      context-path: /parqueadero
+      context-path: /DNACrystal
       session:
          timeout: 21600s
 
 spring:
    datasource:
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: 
       type: com.zaxxer.hikari.HikariDataSource
-      jdbcUrl: jdbc:mysql://localhost:3306/parqueadero
-      username: ceiba
-      password: ceiba
+      jdbcUrl: jdbc:mysql://localhost:3306/DNACrystal?serverTimezone=UTC&useSSL=false
+      username: dnacrystals
+      password: 
       hikari:
          poolName: pool

@@ -1,4 +1,4 @@
-rootProject.name = 'parqueadero'
+rootProject.name = 'DNACrystal'
 
 include ':infraestructura'
 include ':aplicacion'
