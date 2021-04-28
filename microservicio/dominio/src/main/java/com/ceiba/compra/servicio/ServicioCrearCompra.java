@@ -1,9 +1,9 @@
 package com.ceiba.compra.servicio;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.ceiba.compra.modelo.entidad.Compra;
 import com.ceiba.compra.puerto.repositorio.RepositorioCompra;
@@ -13,7 +13,6 @@ import com.ceiba.dominio.excepcion.ExcepcionHorarioLaboral;
 import com.ceiba.parametro.modelo.dto.DtoParametro;
 import com.ceiba.parametro.puerto.dao.DaoParametro;
 import com.ceiba.util.EnumParametro;
-
 
 public class ServicioCrearCompra {
 
@@ -42,7 +41,6 @@ public class ServicioCrearCompra {
 		asignarFechaEntrega(compra);
 		return this.repositorioCompra.crear(compra);
 	}
-
 
 	private void validarExistenciaPrevia(Compra compra) {
 		boolean existe = this.repositorioCompra.existe(compra.getFechaCompra(), compra.getIdCliente());
@@ -91,8 +89,9 @@ public class ServicioCrearCompra {
 	}
 
 	private int calcularDiaFechaEntrega() {
-		return ThreadLocalRandom.current().nextInt(
-				Integer.parseInt(daoParametro.obtenerPorEnum(EnumParametro.DIAS_MINIMOS_FECHA_COMPRA).getValor()),
-				Integer.parseInt(daoParametro.obtenerPorEnum(EnumParametro.DIAS_MAXIMOS_FECHA_COMPRA).getValor()));
+		SecureRandom random = new SecureRandom();
+		int min = Integer.parseInt(daoParametro.obtenerPorEnum(EnumParametro.DIAS_MINIMOS_FECHA_COMPRA).getValor());
+		int max = Integer.parseInt(daoParametro.obtenerPorEnum(EnumParametro.DIAS_MAXIMOS_FECHA_COMPRA).getValor());
+		return random.nextInt(max - min + 1) + min;
 	}
 }
