@@ -3,7 +3,6 @@ package com.ceiba.infraestructura.error;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.ceiba.infraestructura.excepcion.ExcepcionTecnica;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,6 +16,7 @@ import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
+import com.ceiba.infraestructura.excepcion.ExcepcionTecnica;
 
 @ControllerAdvice
 public class ManejadorError extends ResponseEntityExceptionHandler {

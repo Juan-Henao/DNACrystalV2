@@ -12,14 +12,14 @@ public interface RepositorioCompra {
 	 * @param Compra
 	 * @return el id generado
 	 */
-	Long crear(Compra Compra);
+	Long crear(Compra compra);
 
 	/**
 	 * Permite actualizar una Compra
 	 * 
 	 * @param Compra
 	 */
-	void actualizar(Compra Compra);
+	void actualizar(Compra compra);
 
 	/**
 	 * Permite eliminar una Compra

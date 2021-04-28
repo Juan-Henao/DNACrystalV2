@@ -2,9 +2,7 @@ package com.ceiba.itemscompra.servicio.testdatabuilder;
 
 import java.time.LocalDateTime;
 
-import com.ceiba.cliente.modelo.dto.DtoCliente;
-import com.ceiba.compra.modelo.dto.DtoCompra;
-import com.ceiba.itemsCompra.modelo.dto.DtoItemsCompra;
+import com.ceiba.itemscompra.modelo.dto.DtoItemsCompra;
 
 
 

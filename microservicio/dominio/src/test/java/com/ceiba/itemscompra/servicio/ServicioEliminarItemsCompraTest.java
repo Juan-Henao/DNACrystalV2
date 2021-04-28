@@ -8,10 +8,10 @@ import org.mockito.Mockito;
 import com.ceiba.compra.puerto.dao.DaoCompra;
 import com.ceiba.compra.servicio.ServicioActualizarCompra;
 import com.ceiba.compra.servicio.testdatabuilder.DtoCompraTestDataBuilder;
-import com.ceiba.itemsCompra.modelo.entidad.ItemsCompra;
-import com.ceiba.itemsCompra.puerto.dao.DaoItemsCompra;
-import com.ceiba.itemsCompra.puerto.repositorio.RepositorioItemsCompra;
-import com.ceiba.itemsCompra.servicio.ServicioEliminarItemsCompra;
+import com.ceiba.itemscompra.modelo.entidad.ItemsCompra;
+import com.ceiba.itemscompra.puerto.dao.DaoItemsCompra;
+import com.ceiba.itemscompra.puerto.repositorio.RepositorioItemsCompra;
+import com.ceiba.itemscompra.servicio.ServicioEliminarItemsCompra;
 import com.ceiba.itemscompra.servicio.testdatabuilder.DtoItemsCompraTestDataBuilder;
 import com.ceiba.itemscompra.servicio.testdatabuilder.ItemsTestDataBuilder;
 

@@ -2,7 +2,7 @@ package com.ceiba.itemscompra.servicio.testdatabuilder;
 
 import java.time.LocalDateTime;
 
-import com.ceiba.itemsCompra.modelo.entidad.ItemsCompra;
+import com.ceiba.itemscompra.modelo.entidad.ItemsCompra;
 
 
 public class ItemsTestDataBuilder {

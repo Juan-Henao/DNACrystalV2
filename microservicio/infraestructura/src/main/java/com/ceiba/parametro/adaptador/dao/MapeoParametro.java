@@ -3,11 +3,11 @@ package com.ceiba.parametro.adaptador.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.jdbc.core.RowMapper;
+
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import com.ceiba.parametro.modelo.dto.DtoParametro;
 import com.ceiba.util.EnumParametro;
-
-import org.springframework.jdbc.core.RowMapper;
 
 public class MapeoParametro implements RowMapper<DtoParametro>, MapperResult {
 

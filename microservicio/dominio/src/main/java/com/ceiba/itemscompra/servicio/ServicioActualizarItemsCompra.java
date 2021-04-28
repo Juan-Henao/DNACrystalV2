@@ -1,17 +1,13 @@
-package com.ceiba.itemsCompra.servicio;
+package com.ceiba.itemscompra.servicio;
 
 import java.math.BigDecimal;
 
-import com.ceiba.compra.modelo.dto.DtoCompra;
-import com.ceiba.compra.modelo.entidad.Compra;
-import com.ceiba.compra.puerto.dao.DaoCompra;
-import com.ceiba.compra.servicio.ServicioActualizarCompra;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionExcesoItems;
 import com.ceiba.dominio.excepcion.ExcepcionMaximoAnchoItem;
 import com.ceiba.dominio.excepcion.ExcepcionMaximoLargoItem;
-import com.ceiba.itemsCompra.modelo.entidad.ItemsCompra;
-import com.ceiba.itemsCompra.puerto.repositorio.RepositorioItemsCompra;
+import com.ceiba.itemscompra.modelo.entidad.ItemsCompra;
+import com.ceiba.itemscompra.puerto.repositorio.RepositorioItemsCompra;
 import com.ceiba.parametro.puerto.dao.DaoParametro;
 import com.ceiba.util.EnumParametro;
 
@@ -35,12 +31,12 @@ public class ServicioActualizarItemsCompra {
 	}
 
 	public void ejecutar(ItemsCompra itemsCompra) {
-		validarExistenciaPrevia(itemsCompra);
-		validarCantidadSolicitada(itemsCompra);
-		validarAnchoItemsCompra(itemsCompra);
-		validarLargoItemsCompra(itemsCompra);
+		validarExistenciaActualizarItems(itemsCompra);
+		validarCantidadActualizacionItems(itemsCompra.getCantidad());
+		validarAnchoActualizacion(itemsCompra.getAncho());
+		validarLargoActualizacion(itemsCompra.getLargo());
 		if (itemsCompra.getCantidad() > Long.parseLong(daoParametro.obtenerPorEnum(EnumParametro.ITEMS_MINIMOS_DESCUENTO).getValor())) {
-			aplicarDescuento(itemsCompra);
+			aplicarDescuentoPostActualizar(itemsCompra);
 		}
 
 		this.repositorioItemsCompra.actualizar(itemsCompra);
@@ -48,7 +44,7 @@ public class ServicioActualizarItemsCompra {
 
 	
 	
-	private void validarExistenciaPrevia(ItemsCompra itemsCompra) {
+	private void validarExistenciaActualizarItems(ItemsCompra itemsCompra) {
 		boolean existe = this.repositorioItemsCompra.existeExcluyendoId(itemsCompra.getId(),
 				itemsCompra.getFechaCreacion(), itemsCompra.getIdCompra());
 		if (existe) {
@@ -56,9 +52,9 @@ public class ServicioActualizarItemsCompra {
 		}
 	}
 
-	private void validarCantidadSolicitada(ItemsCompra itemsCompra) {
+	private void validarCantidadActualizacionItems(Long itemsCompra) {
 
-		if (itemsCompra.getCantidad()
+		if (itemsCompra
 				.compareTo(Long.parseLong(
 						daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_ITEMS_POSIBLES).getValor())) > BigDecimal.ZERO
 								.intValue()) {
@@ -66,8 +62,8 @@ public class ServicioActualizarItemsCompra {
 		}
 	}
 
-	private void validarAnchoItemsCompra(ItemsCompra itemsCompra) {
-		if (itemsCompra.getAncho()
+	private void validarAnchoActualizacion(Double anchoItemsCompra) {
+		if (anchoItemsCompra
 				.compareTo(Double.parseDouble(
 						daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_ANCHO_ITEM).getValor())) > BigDecimal.ZERO
 								.intValue()) {
@@ -75,8 +71,8 @@ public class ServicioActualizarItemsCompra {
 		}
 	}
 
-	private void validarLargoItemsCompra(ItemsCompra itemsCompra) {
-		if (itemsCompra.getLargo()
+	private void validarLargoActualizacion(Double largoItemsCompra) {
+		if (largoItemsCompra
 				.compareTo(Double.parseDouble(
 						daoParametro.obtenerPorEnum(EnumParametro.MAXIMO_LARGO_ITEM).getValor())) > BigDecimal.ZERO
 								.intValue()) {
@@ -84,7 +80,7 @@ public class ServicioActualizarItemsCompra {
 		}
 	}
 
-	private void aplicarDescuento(ItemsCompra itemsCompra) {
+	private void aplicarDescuentoPostActualizar(ItemsCompra itemsCompra) {
 		Double valorActual = itemsCompra.getValor();
 		Double valorDescuento = valorActual
 				* Double.parseDouble(daoParametro.obtenerPorEnum(EnumParametro.ITEMS_MINIMOS_DESCUENTO).getValor());

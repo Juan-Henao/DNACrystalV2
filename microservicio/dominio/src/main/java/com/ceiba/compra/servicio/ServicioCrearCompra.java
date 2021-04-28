@@ -1,6 +1,5 @@
 package com.ceiba.compra.servicio;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -11,8 +10,6 @@ import com.ceiba.compra.puerto.repositorio.RepositorioCompra;
 import com.ceiba.dominio.excepcion.ExcepcionDiaFestivo;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionHorarioLaboral;
-import com.ceiba.itemsCompra.modelo.dto.DtoItemsCompra;
-import com.ceiba.itemsCompra.puerto.dao.DaoItemsCompra;
 import com.ceiba.parametro.modelo.dto.DtoParametro;
 import com.ceiba.parametro.puerto.dao.DaoParametro;
 import com.ceiba.util.EnumParametro;

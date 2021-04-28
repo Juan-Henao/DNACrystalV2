@@ -2,8 +2,6 @@ package com.ceiba.cliente.consulta;
 
 import java.util.List;
 
-
-
 import org.springframework.stereotype.Component;
 
 import com.ceiba.cliente.modelo.dto.DtoCliente;

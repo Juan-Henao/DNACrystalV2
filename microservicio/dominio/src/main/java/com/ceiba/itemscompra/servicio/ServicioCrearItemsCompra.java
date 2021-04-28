@@ -1,17 +1,13 @@
-package com.ceiba.itemsCompra.servicio;
+package com.ceiba.itemscompra.servicio;
 
 import java.math.BigDecimal;
 
-import com.ceiba.compra.modelo.dto.DtoCompra;
-import com.ceiba.compra.modelo.entidad.Compra;
-import com.ceiba.compra.puerto.dao.DaoCompra;
-import com.ceiba.compra.servicio.ServicioActualizarCompra;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionExcesoItems;
 import com.ceiba.dominio.excepcion.ExcepcionMaximoAnchoItem;
 import com.ceiba.dominio.excepcion.ExcepcionMaximoLargoItem;
-import com.ceiba.itemsCompra.modelo.entidad.ItemsCompra;
-import com.ceiba.itemsCompra.puerto.repositorio.RepositorioItemsCompra;
+import com.ceiba.itemscompra.modelo.entidad.ItemsCompra;
+import com.ceiba.itemscompra.puerto.repositorio.RepositorioItemsCompra;
 import com.ceiba.parametro.puerto.dao.DaoParametro;
 import com.ceiba.util.EnumParametro;
 

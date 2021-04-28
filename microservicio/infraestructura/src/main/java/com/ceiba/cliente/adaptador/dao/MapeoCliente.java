@@ -4,10 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
+import org.springframework.jdbc.core.RowMapper;
+
 import com.ceiba.cliente.modelo.dto.DtoCliente;
 import com.ceiba.infraestructura.jdbc.MapperResult;
-
-import org.springframework.jdbc.core.RowMapper;
 
 public class MapeoCliente implements RowMapper<DtoCliente>, MapperResult {
 

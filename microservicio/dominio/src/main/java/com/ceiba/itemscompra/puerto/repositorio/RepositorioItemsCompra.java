@@ -1,8 +1,10 @@
-package com.ceiba.itemsCompra.puerto.repositorio;
+package com.ceiba.itemscompra.puerto.repositorio;
 
 import java.time.LocalDateTime;
 
-import com.ceiba.itemsCompra.modelo.entidad.ItemsCompra;
+import com.ceiba.itemscompra.modelo.entidad.ItemsCompra;
+
+
 
 
 
@@ -13,14 +15,14 @@ public interface RepositorioItemsCompra {
 	 * @param ItemsCompra
 	 * @return el id generado
 	 */
-	Long crear(ItemsCompra ItemsCompra);
+	Long crear(ItemsCompra itemsCompra);
 
 	/**
 	 * Permite actualizar un ItemsCompra
 	 * 
 	 * @param ItemsCompra
 	 */
-	void actualizar(ItemsCompra ItemsCompra);
+	void actualizar(ItemsCompra itemsCompra);
 
 	/**
 	 * Permite eliminar un ItemsCompra

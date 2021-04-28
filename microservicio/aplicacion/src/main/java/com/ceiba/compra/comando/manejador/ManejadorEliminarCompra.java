@@ -1,9 +1,9 @@
 package com.ceiba.compra.comando.manejador;
 
+import org.springframework.stereotype.Component;
+
 import com.ceiba.compra.servicio.ServicioEliminarCompra;
 import com.ceiba.manejador.ManejadorComando;
-
-import org.springframework.stereotype.Component;
 
 
 @Component

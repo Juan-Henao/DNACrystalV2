@@ -1,10 +1,10 @@
 package com.ceiba.cliente.modelo.entidad;
 
-import lombok.Getter;
+import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 import java.time.LocalDateTime;
 
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+import lombok.Getter;
 
 @Getter
 public class Cliente {

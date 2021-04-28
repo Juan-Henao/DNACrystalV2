@@ -1,11 +1,9 @@
-package com.ceiba.itemsCompra.modelo.dto;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+package com.ceiba.itemscompra.modelo.dto;
 
 import java.time.LocalDateTime;
 
-import com.ceiba.compra.modelo.dto.DtoCompra;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @Getter
 @AllArgsConstructor

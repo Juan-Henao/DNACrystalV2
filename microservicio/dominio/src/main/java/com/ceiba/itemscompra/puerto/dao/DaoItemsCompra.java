@@ -1,9 +1,11 @@
-package com.ceiba.itemsCompra.puerto.dao;
+package com.ceiba.itemscompra.puerto.dao;
 
 
 import java.util.List;
 
-import com.ceiba.itemsCompra.modelo.dto.DtoItemsCompra;
+import com.ceiba.itemscompra.modelo.dto.DtoItemsCompra;
+
+
 
 
 public interface DaoItemsCompra {

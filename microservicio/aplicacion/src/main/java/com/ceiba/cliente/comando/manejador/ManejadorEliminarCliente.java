@@ -1,9 +1,9 @@
 package com.ceiba.cliente.comando.manejador;
 
+import org.springframework.stereotype.Component;
+
 import com.ceiba.cliente.servicio.ServicioEliminarCliente;
 import com.ceiba.manejador.ManejadorComando;
-
-import org.springframework.stereotype.Component;
 
 @Component
 public class ManejadorEliminarCliente implements ManejadorComando<Long> {

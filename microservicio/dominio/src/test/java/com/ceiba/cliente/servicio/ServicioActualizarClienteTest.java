@@ -1,8 +1,6 @@
 package com.ceiba.cliente.servicio;
 
 
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-
 import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
@@ -12,6 +10,7 @@ import com.ceiba.BasePrueba;
 import com.ceiba.cliente.modelo.entidad.Cliente;
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.cliente.servicio.testdatabuilder.ClienteTestDataBuilder;
+import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 
 public class ServicioActualizarClienteTest {
 
