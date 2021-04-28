@@ -1,6 +1,6 @@
 package com.ceiba.compra.servicio;
 
-import java.util.concurrent.ThreadLocalRandom;
+import java.security.SecureRandom;
 
 import com.ceiba.compra.modelo.entidad.Compra;
 import com.ceiba.compra.puerto.repositorio.RepositorioCompra;
@@ -45,13 +45,14 @@ public class ServicioActualizarCompra {
 		compra.setTotal(Double.parseDouble(valorMulta));
 	}
 	private void asignarFechaEntrega(Compra compra) {
-		int cantidadDias = calcularDiaFechaEntrega();
+		int cantidadDias = calcularFechaEntregaUpdate();
 		compra.setFechaEntrega(compra.getFechaCompra().plusDays(cantidadDias));
 	}
 
-	private int calcularDiaFechaEntrega() {
-		return ThreadLocalRandom.current().nextInt(
-				Integer.parseInt(daoParametro.obtenerPorEnum(EnumParametro.DIAS_MINIMOS_FECHA_COMPRA).getValor()),
-				Integer.parseInt(daoParametro.obtenerPorEnum(EnumParametro.DIAS_MAXIMOS_FECHA_COMPRA).getValor()));
+	private int calcularFechaEntregaUpdate() {
+		SecureRandom random = new SecureRandom();
+		int min = Integer.parseInt(daoParametro.obtenerPorEnum(EnumParametro.DIAS_MINIMOS_FECHA_COMPRA).getValor());
+		int max = Integer.parseInt(daoParametro.obtenerPorEnum(EnumParametro.DIAS_MAXIMOS_FECHA_COMPRA).getValor());
+		return random.nextInt(max - min + 1) + min;
 	}
 }
