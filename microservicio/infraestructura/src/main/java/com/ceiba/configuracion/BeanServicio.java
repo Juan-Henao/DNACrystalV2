@@ -11,10 +11,6 @@ import com.ceiba.compra.puerto.repositorio.RepositorioCompra;
 import com.ceiba.compra.servicio.ServicioActualizarCompra;
 import com.ceiba.compra.servicio.ServicioCrearCompra;
 import com.ceiba.compra.servicio.ServicioEliminarCompra;
-import com.ceiba.itemsCompra.puerto.repositorio.RepositorioItemsCompra;
-import com.ceiba.itemsCompra.servicio.ServicioActualizarItemsCompra;
-import com.ceiba.itemsCompra.servicio.ServicioCrearItemsCompra;
-import com.ceiba.itemsCompra.servicio.ServicioEliminarItemsCompra;
 import com.ceiba.parametro.puerto.dao.DaoParametro;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
@@ -23,27 +19,7 @@ import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
 
 @Configuration
 public class BeanServicio {
-	
-	/*
-	 * 
-	 * SERVICIOS DE ITEMSCOMPRA
-	 * 
-	 */
-    @Bean
-    public ServicioCrearItemsCompra servicioCrearItemsCompra(RepositorioItemsCompra repositorioItemsCompra, DaoParametro daoParametro) {
-        return new ServicioCrearItemsCompra(repositorioItemsCompra, daoParametro);
-    }
 
-    @Bean
-    public ServicioEliminarItemsCompra servicioEliminarItemsCompra(RepositorioItemsCompra repositorioItemsCompra) {
-        return new ServicioEliminarItemsCompra(repositorioItemsCompra);
-    }
-
-    @Bean
-    public ServicioActualizarItemsCompra servicioActualizarItemsCompra(RepositorioItemsCompra repositorioItemsCompra ,
-    		DaoParametro daoParametro) {
-        return new ServicioActualizarItemsCompra(repositorioItemsCompra, daoParametro);
-    }
 	/*
 	 * 
 	 * SERVICIOS DEL COMPRA

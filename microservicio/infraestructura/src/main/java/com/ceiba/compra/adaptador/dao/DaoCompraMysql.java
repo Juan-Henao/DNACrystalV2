@@ -25,7 +25,7 @@ public class DaoCompraMysql implements DaoCompra {
     @SqlStatement(namespace="compra", value="obtener")
     private static String sqlObtenerCompra;
       
-   
+    
     public DaoCompraMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
